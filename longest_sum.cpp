@@ -5,7 +5,7 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
-void longest_sum(vector<int> &v)
+vector<int> longest_sum(vector<int> &v, int k)
 {
     vector<vector<int> > allv;
     vector<int> arr;
@@ -13,14 +13,15 @@ void longest_sum(vector<int> &v)
     for (int i = 0; i < v.size(); i++)
     {
         sub.push_back(v[i]);
+        allv.push_back(sub);
 
-        for (int j = i; j < v.size(); j++)
+        for (int j = i + 1; j < v.size(); j++)
         {
-            for (int k = i; k < j; k++)
+            for (int k = i; k <= j; k++)
             {
                 arr.push_back(v[k]);
             }
-            allv.push_back(sub);
+
             allv.push_back(arr);
             arr.clear();
             sub.clear();
@@ -37,6 +38,23 @@ void longest_sum(vector<int> &v)
         }
         cout << ']' << endl;
     }
+
+    int sum = 0;
+
+    for (auto it : allv)
+    {
+        cout << " this is first loop" << endl;
+        for (int i = 0; i < it.size(); i++)
+        {
+            cout << it[i] << " this is second loop" << endl;
+            sum += it[i];
+        }
+        if (sum == k)
+        {
+            return it;
+        }
+        sum = 0;
+    }
 }
 int main()
 {
@@ -45,7 +63,11 @@ int main()
     int size = sizeof(arr) / sizeof(arr[0]);
 
     vector<int> v(arr, arr + size);
-    longest_sum(v);
+    vector<int> ans = longest_sum(v, 10);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
 
     //   Compilation Time code //
     cout << endl;
