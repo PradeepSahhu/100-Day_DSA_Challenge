@@ -161,9 +161,40 @@ void hash_map_approach(vector<int> &v, int l)
             int len = i - mpp[rem]; // this will return the key i.e. index of the rem value.
             maxLen = max(maxLen, len);
         }
-        mpp[sum] = i; // we are setting the key.
+        if (mpp.find(sum) == mpp.end()) // if the current sum is not already existing in the map.(left most element)
+        {
+            mpp[sum] = i; // we are setting the key. through value mpp[18] = 0...12;
+        }
     }
     cout << maxLen;
+}
+
+// most optimum solution ( 2 pointer approach)
+
+void most_optimum_largest_subarray(vector<int> &v, int k)
+{
+    int left = 0;
+    int right = 0;
+    int sum = v[0];
+    int length = 0;
+
+    for (int l = 1; l < v.size(); l++)
+    {
+        while (left <= right && sum > k)
+        {
+
+            sum -= v[left];
+            left++;
+        }
+        if (sum == k)
+        {
+            length = max(length, right - left + 1);
+        }
+
+        right++;
+        sum += v[right];
+    }
+    cout << (length);
 }
 int main()
 {
@@ -175,7 +206,8 @@ int main()
     // vector<int> ans = longest_sum_subarray(v, 10);
 
     // longest_sum_length(v, 10);
-    hash_map_approach(v, 6);
+    // hash_map_approach(v, 6);
+    most_optimum_largest_subarray(v, 6);
 
     // for (int i = 0; i < ans.size(); i++)
     // {
