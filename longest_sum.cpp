@@ -180,6 +180,7 @@ void most_optimum_largest_subarray(vector<int> &v, int k)
 
     for (int l = 1; l < v.size(); l++)
     {
+        // while(right < v.size())
         while (left <= right && sum > k)
         {
 
