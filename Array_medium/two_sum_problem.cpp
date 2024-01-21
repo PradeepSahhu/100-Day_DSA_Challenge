@@ -8,8 +8,8 @@ auto start = chrono::steady_clock::now();
 
 //! 2 sum problem Part-1: (return true or false), that is if sum of two elements in the array is equal
 //! to target value or not.
-pair<int, int> sum_is_present_in_the_array(vector<int> &v, int target)
-// bool sum_is_present_in_the_array(vector<int> &v, int target)
+// pair<int, int> sum_is_present_in_the_array(vector<int> &v, int target)
+bool sum_is_present_in_the_array(vector<int> &v, int target)
 {
     // brute force approach
 
@@ -28,28 +28,51 @@ pair<int, int> sum_is_present_in_the_array(vector<int> &v, int target)
     // return false;
 
     // better Approach
-    map<int, int> mpp; // ordered map : O(log n)
-    for (int i = 0; i < v.size(); i++)
-    {
-        // cout << i << endl;  // cout << mpp[v[i]] != i; //! it means both number should not be same value.
-        int res = target - v[i];
-        if (mpp.find(res) != mpp.end() && mpp[res] != i) // mpp.find(key) --> checks if the key exist or not
-        {
-            return make_pair(mpp[res], i); // return true; //return [mpp[res]:i]
-        }
-        mpp[v[i]] = i; // key ---> value
-    }
+    // map<int, int> mpp; // ordered map : O(log n)
     // for (int i = 0; i < v.size(); i++)
     // {
-    // cout << mpp[v[i]] != i; //! it means both number should not be same value.
-    //     int res = target - v[i];
-    //     if (mpp.find(res) != mpp.end() && mpp[res] != i) // mpp.find(key) --> checks if the key exist or not
+    //     // cout << i << endl;  // cout << mpp[v[i]] != i; //! it means both number should not be same value.
+    //     int rem = target - v[i];
+    //     if (mpp.find(rem) != mpp.end() && mpp[rem] != i) // mpp.find(key) --> checks if the key exist or not
     //     {
-    //         return true;
+    //         return make_pair(mpp[rem], i); // return true; //return [mpp[res]:i]
     //     }
+    //     mpp[v[i]] = i; // key ---> value
     // }
-    return make_pair(-1, -1);
-    // return false;
+    // // for (int i = 0; i < v.size(); i++)
+    // // {
+    // // cout << mpp[v[i]] != i; //! it means both number should not be same value.
+    // //     int res = target - v[i];
+    // //     if (mpp.find(res) != mpp.end() && mpp[res] != i) // mpp.find(key) --> checks if the key exist or not
+    // //     {
+    // //         return true;
+    // //     }
+    // // }
+    // return make_pair(-1, -1);
+    // // return false;
+
+    // optimum solution for 1st problem (true/false). (two pointer approach)
+    sort(v.begin(), v.end());
+    int left = 0;
+    int right = v.size() - 1;
+
+    while (left < right)
+    {
+        int sum = v[left] + v[right];
+        if (sum == target)
+        {
+            return true;
+        }
+        else if (sum > target)
+        {
+            right--;
+        }
+        else
+        {
+            left++;
+        }
+    }
+    return false;
 }
 
 int main()
@@ -65,9 +88,9 @@ int main()
 
     vector<int> v(arr, arr + size);
 
-    // sum_is_present_in_the_array(v, 14) ? cout << "Present" : cout << "Not Present";
-    pair<int, int> p = sum_is_present_in_the_array(v, 10);
-    cout << p.first << " : " << p.second << endl;
+    sum_is_present_in_the_array(v, 19) ? cout << "Present" : cout << "Not Present";
+    // pair<int, int> p = sum_is_present_in_the_array(v, 10);
+    // cout << p.first << " : " << p.second << endl;
 
     //   Compilation Time code //
     cout << endl;
