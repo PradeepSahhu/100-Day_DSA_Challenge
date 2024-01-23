@@ -5,6 +5,8 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
+// solved by using dutch national flag algorithm.
+
 void sort_1_(vector<int> &v)
 {
     int low = 0;
