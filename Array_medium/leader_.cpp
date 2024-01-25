@@ -52,6 +52,7 @@ vector<int> finding_leader(vector<int> &v)
 
 vector<int> superiorElements(vector<int> &a)
 {
+    // this is the most optimised approach.
 
     vector<int> ans;
     int maxi = INT_MIN;
