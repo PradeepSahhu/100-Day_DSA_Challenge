@@ -101,10 +101,11 @@ int longest_consecutive_sequence(vector<int> &v)
 int main()
 {
 
-    int arr[] = {102, 4, 100, 1, 101, 3, 2, 1, 1};
-    int size = sizeof(arr) / sizeof(arr[0]);
+    // int arr[] = {102, 4, 100, 1, 101, 3, 2, 1, 1};
+    // int size = sizeof(arr) / sizeof(arr[0]);
 
-    vector<int> v(arr, arr + size);
+    // vector<int> v(arr, arr + size);
+    vector<int> v = {102, 4, 100, 1, 101, 3, 2, 1, 1};
 
     cout << longest_consecutive_sequence(v);
 
