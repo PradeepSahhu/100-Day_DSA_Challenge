@@ -6,6 +6,18 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
+bool linear_search(vector<int> &v, int key)
+{
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (v[i] == key)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 // int longest_consecutive_sequence(vector<int> &v)
 // {
 

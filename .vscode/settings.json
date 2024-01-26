@@ -1,0 +1,13 @@
+{
+    "tasks":[
+    {
+        "type":"cppbuild",
+        "label":"C/C++: clang++ build active file",
+        "commands":"/usr/bin/clang++",
+        "args":[
+            "-std=c++17 ",
+            "-stdlib=libc++"
+        ]
+    }
+]
+}
