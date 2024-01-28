@@ -45,10 +45,12 @@ auto start = chrono::steady_clock::now();
 // }
 vector<vector<int>> setMatrix_(vector<vector<int>> &v, int n, int m)
 {
-    cout << "hello world" << endl;
+    // cout << "hello world" << endl;
 
-    int col[m] = {0};
-    int row[n] = {0};
+    // int col[m] = {0};
+    vector<int> col(m, 0);
+    vector<int> row(n, 0);
+    // int row[n] = {0};
     for (int i = 0; i < v.size(); i++)
     {
         for (int j = 0; j < v[i].size(); j++)

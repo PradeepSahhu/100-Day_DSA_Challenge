@@ -1,6 +1,6 @@
 
 #!/bin/bash
-
+echo "Made by Pradeep Sahu (22BCS10284)"
 # Check if a filename is provided as a command-line argument
 if [ "$#" -eq 0 ]; then
     echo "Usage: $0 <filename>"
