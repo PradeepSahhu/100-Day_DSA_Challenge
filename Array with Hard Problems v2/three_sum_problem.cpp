@@ -41,32 +41,40 @@ vector<vector<int>> bruteForce(vector<int> &nums)
     return ans;
 }
 
+void printmap(map<int, int> &mpp)
+{
+    for (auto it : mpp)
+    {
+        cout << it.first << " -> " << it.second << endl;
+    }
+}
+
 vector<vector<int>> betterApproach(vector<int> &nums)
 {
-    //! using hashmap...
+    //! using hashmap approach...
 
     int n = nums.size();
 
-    map<int, int> mpp;
     set<vector<int>> s;
 
     for (int i = 0; i < n; i++)
     {
+        map<int, int> mpp;
         for (int j = i + 1; j < n; j++)
         {
-            int elementToSearch = nums[i] + nums[j];
+
+            int elementToSearch = -(nums[i] + nums[j]);
             if (mpp.find(elementToSearch) != mpp.end())
             {
-                vector<int> ans = {nums[i], nums[j], nums[mpp[elementToSearch]]};
-                sort(ans.begin(), ans.end());
-                s.insert(ans.begin(), ans.end());
+                cout << mpp[elementToSearch] << endl;
+                vector<int> temp = {nums[i], nums[j], elementToSearch};
+                sort(temp.begin(), temp.end());
+                s.insert(temp);
             }
             else
             {
-                if (nums[j] >= 0)
-                {
-                    mpp[nums[j]] = j;
-                }
+
+                mpp[nums[j]] = j;
             }
         }
     }
