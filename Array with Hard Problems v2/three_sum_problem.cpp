@@ -59,14 +59,13 @@ vector<vector<int>> betterApproach(vector<int> &nums)
 
     for (int i = 0; i < n; i++)
     {
-        map<int, int> mpp;
+        set<int> st; //! we can also use the map data structure here.
         for (int j = i + 1; j < n; j++)
         {
 
             int elementToSearch = -(nums[i] + nums[j]);
-            if (mpp.find(elementToSearch) != mpp.end())
+            if (st.find(elementToSearch) != st.end())
             {
-                cout << mpp[elementToSearch] << endl;
                 vector<int> temp = {nums[i], nums[j], elementToSearch};
                 sort(temp.begin(), temp.end());
                 s.insert(temp);
@@ -74,7 +73,7 @@ vector<vector<int>> betterApproach(vector<int> &nums)
             else
             {
 
-                mpp[nums[j]] = j;
+                st.insert(nums[j]);
             }
         }
     }
@@ -83,12 +82,57 @@ vector<vector<int>> betterApproach(vector<int> &nums)
     return ans;
 }
 
+//! using two pointer approach (bestApproach).
+
+vector<vector<int>> bestApproach(vector<int> &nums)
+{
+    int n = nums.size();
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> ans;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i > 0 && nums[i] == nums[i - 1])
+            continue;
+        int j = i + 1;
+        int k = n - 1;
+
+        while (j < k)
+        {
+
+            int element = nums[i] + nums[j] + nums[k];
+            if (element < 0)
+            {
+                j++;
+            }
+            else if (element > 0)
+            {
+                k--;
+            }
+            else
+            {
+                vector<int> temp = {nums[i], nums[j], nums[k]};
+                ans.push_back(temp);
+                j++;
+                k--;
+                while (j < k && nums[j] == nums[j - 1])
+                    j++;
+                while (j < k && nums[k] == nums[k + 1])
+                    k--;
+            }
+        }
+    }
+    return ans;
+}
+
 int main()
 {
 
     vector<int> v = {-1, 0, 1, 2, -1, -4};
     // vector<vector<int>> ans = bruteForce(v);
-    vector<vector<int>> ans = betterApproach(v);
+    // vector<vector<int>> ans = betterApproach(v);
+    vector<vector<int>> ans = bestApproach(v);
+
     for (int i = 0; i < ans.size(); i++)
     {
         cout << "Real answer is " << endl;
