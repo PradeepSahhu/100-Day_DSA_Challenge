@@ -12,10 +12,9 @@ then
 	
 else 
 
-	while [ "$#" -ge "$counter" ]; do
-		message="$counter"
-		((counter++))
-
+	while [$# -ge $counter]; do
+		$message="$counter"
+		((counter+1))
 	done
 	git add .
 	wait
