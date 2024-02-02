@@ -1,5 +1,5 @@
 #!/opt/homebrew/bin/bash
-
+# // this is just a message
 
 message=""
 counter=0
