@@ -5,6 +5,8 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
+//? Longest Sum Subarray with the sum equal to k
+
 // vector<int> longest_sum(vector<int> &v, int k)
 // {
 //     // vector<vector<int>> allv;
@@ -166,6 +168,11 @@ void hash_map_approach(vector<int> &v, int l)
             mpp[sum] = i; // we are setting the key. through value mpp[18] = 0...12;
         }
     }
+
+    // for (auto it : mpp)
+    // {
+    //     cout << it.first << " " << it.second << endl;
+    // }
     cout << maxLen;
 }
 
@@ -207,8 +214,8 @@ int main()
     // vector<int> ans = longest_sum_subarray(v, 10);
 
     // longest_sum_length(v, 10);
-    // hash_map_approach(v, 6);
-    most_optimum_largest_subarray(v, 6);
+    hash_map_approach(v, 6);
+    // most_optimum_largest_subarray(v, 6);
 
     // for (int i = 0; i < ans.size(); i++)
     // {
