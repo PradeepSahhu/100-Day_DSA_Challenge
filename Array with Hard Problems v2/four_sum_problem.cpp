@@ -63,7 +63,65 @@ vector<vector<int>> BetterApproach(vector<int> &nums, int target)
 
 vector<vector<int>> bestApproach(vector<int> &nums, int target)
 {
-    
+
+    int n = nums.size();
+    vector<vector<int>> ans;
+    sort(nums.begin(), nums.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i > 0 && nums[i] == nums[i - 1])
+            continue;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (j != (i + 1) && nums[j] == nums[j - 1])
+                continue;
+            int k = j + 1;
+            int l = n - 1;
+
+            // cout << "this is working" << endl;
+
+            while (k < l)
+            {
+                long long element = nums[i];
+                element += nums[j];
+                element += nums[k];
+                element += nums[l];
+                if (element == target)
+                {
+
+                    vector<int> temp = {nums[i], nums[j], nums[k], nums[l]};
+                    cout << endl;
+                    ans.push_back(temp);
+                    k++;
+                    l--;
+                    while (k < l && nums[k] == nums[k - 1])
+                        k++;
+                    while (k < l && nums[l] == nums[l + 1])
+                        l--;
+                }
+                else if (element < target)
+                {
+                    k++;
+                }
+                else
+                {
+                    l--;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < ans.size(); i++)
+    {
+        for (int j = 0; j < ans[i].size(); j++)
+        {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return ans;
 }
 
 int main()
@@ -71,7 +129,8 @@ int main()
 
     vector<int> v = {1, 0, -1, 0, -2, 2};
     // vector<vector<int>> ans = bruteForce(v, 0);
-    vector<vector<int>> ans = BetterApproach(v, 3);
+    // vector<vector<int>> ans = BetterApproach(v, 3);
+    vector<vector<int>> ans = bestApproach(v, 0);
 
     cout << "My answer" << endl;
     for (int i = 0; i < ans.size(); i++)
