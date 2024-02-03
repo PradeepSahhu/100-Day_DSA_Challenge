@@ -192,15 +192,19 @@ void most_optimum_largest_subarray(vector<int> &v, int k)
         {
 
             sum -= v[left];
+            cout << "The value of sum is " << sum << "The value of left " << left << "->" << l << endl;
             left++;
         }
         if (sum == k)
         {
             length = max(length, right - left + 1);
+            cout << "left " << left << "right " << right << endl;
         }
 
         right++;
+
         sum += v[right];
+        cout << "The value of right" << right << "--- " << sum << endl;
     }
     cout << (length);
 }
@@ -214,8 +218,8 @@ int main()
     // vector<int> ans = longest_sum_subarray(v, 10);
 
     // longest_sum_length(v, 10);
-    hash_map_approach(v, 6);
-    // most_optimum_largest_subarray(v, 6);
+    // hash_map_approach(v, 6);
+    most_optimum_largest_subarray(v, 6);
 
     // for (int i = 0; i < ans.size(); i++)
     // {
