@@ -9,62 +9,28 @@ vector<int> plusOne(vector<int> &digits)
 {
 
     int n = digits.size();
-    int count = 0;
-    // vector<int> ans;
-    // int count;
 
-    for (int i = 0; i < n; i++)
+    for (int i = n - 1; i >= 0; i--)
     {
-        count = count * 10 + digits[i];
+        if (digits[i] < 9)
+        {
+            digits[i]++;
+            cout << "The value of digits are " << digits[i] << endl;
+            return digits; // incrementing the last index and returning the whole list.
+        }
+        digits[i] = 0; // if the last index is 9 then settting it to 0 and running it for last-1 index.
     }
-    count = count + 1;
-    int temp = count;
-    int digit = to_string(temp).length();
-    cout << "The value of digit is : " << digit << endl;
-    cout << "The value of count is " << count << endl;
-    vector<int> ans(digit);
-
-    for (int i = digit - 1; i >= 0; i--)
-    {
-        ans[i] = count % 10;
-        count = count / 10;
-        cout << count << endl;
-    }
-
-    // for (int i = 0; i < n; i++)
-    // {
-
-    //     if (digits[i] == 9)
-    //     {
-    //         if (count == 0)
-    //         {
-    //             ans.push_back(1);
-    //         }
-    //         count++;
-    //     }
-    //     else if (i == n - 1)
-    //     {
-    //         ans.push_back(digits[i] + 1);
-    //     }
-    //     else
-    //     {
-    //         ans.push_back(digits[i] + count);
-
-    //         ans.push_back(count);
-    //         count--;
-    //     }
-    // }
-
-    return ans;
+    digits.insert(digits.begin(), 1); // if the list is not terminated in the loop then it means it has 9,9,9 elements in the array. hence inserting the 1 in the beginning.
+    return digits;                    // returning the funciton.
 }
 
 int main()
 {
 
     vector<int> v = {9, 9};    // edge case.
-    vector<int> s = {1, 2, 3}; // normal case.
+    vector<int> s = {1, 2, 9}; // normal case.
 
-    vector<int> ans = plusOne(v);
+    vector<int> ans = plusOne(s);
     for (int i = 0; i < ans.size(); i++)
     {
         cout << ans[i] << " ";
