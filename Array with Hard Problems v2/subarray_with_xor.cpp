@@ -41,6 +41,7 @@ int no_of_subArray_with_xor_better_approach(vector<int> &v, int b)
     int n = v.size();
     int count = 0;
     int summation = 0;
+    int lastXor = 0;
     map<int, int> mpp;
 
     for (int i = 0; i < n; i++)
@@ -49,7 +50,12 @@ int no_of_subArray_with_xor_better_approach(vector<int> &v, int b)
     }
     for (auto it : mpp)
     {
+        if (it.first == b)
+        {
+            count++;
+        }
         summation ^= it.first;
+        lastXor = summation;
         if (summation == b)
         {
             if (it.second % 2 == 0)
@@ -68,7 +74,7 @@ int main()
 {
     vector<int> v = {4, 2, 2, 6, 4};
 
-    cout << no_of_subArray_with_xor_bruteForce_approach(v, 6);
+    cout << no_of_subArray_with_xor_better_approach(v, 6);
 
     //   Compilation Time code //
     cout << endl;
