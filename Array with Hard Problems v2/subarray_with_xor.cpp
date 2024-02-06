@@ -35,6 +35,35 @@ int no_of_subArray_with_xor_bruteForce_approach(vector<int> &v, int b)
     }
     return count;
 }
+
+int no_of_subArray_with_xor_better_approach(vector<int> &v, int b)
+{
+    int n = v.size();
+    int count = 0;
+    int summation = 0;
+    map<int, int> mpp;
+
+    for (int i = 0; i < n; i++)
+    {
+        mpp[v[i]]++;
+    }
+    for (auto it : mpp)
+    {
+        summation ^= it.first;
+        if (summation == b)
+        {
+            if (it.second % 2 == 0)
+            {
+                count += 2;
+            }
+            else
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 int main()
 {
     vector<int> v = {4, 2, 2, 6, 4};
