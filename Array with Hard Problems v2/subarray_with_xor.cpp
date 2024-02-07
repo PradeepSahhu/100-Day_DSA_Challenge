@@ -12,6 +12,9 @@ Given an array of integers A and an integer B.
 Find the total number of subarrays having bitwise XOR of all elements equals to B.
 */
 
+//! Before solving this problem. 1. solve longest subarray with given sum (postive and positive & negative).
+//! Number of subarray with given sum.
+
 int no_of_subArray_with_xor_bruteForce_approach(vector<int> &v, int b)
 { //! Time limit Exceed.
     int n = v.size();
