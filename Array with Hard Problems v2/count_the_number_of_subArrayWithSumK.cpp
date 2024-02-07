@@ -5,32 +5,54 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
-//! only for positive.
+//! only for positive numbers.
 int longestSubarrayWithSumK(vector<int> a, long long k)
 {
 
+    int n = a.size();
+
     int maxlength = 0;
     map<long long, int> mpp;
-    long long summation = 0;
 
     // better syntax and easy to understand however this doesn't give the garanteee of longest subarray.
 
-    for (int i = 0; i < a.size(); i++)
-    {
-        summation += a[i];
+    // for (int i = 0; i < a.size(); i++)
+    // {
+    //     summation += a[i];
 
+    //     if (summation == k)
+    //     {
+    //         maxlength = i + 1;
+    //     }
+    //     long long rem = summation - k;
+    //     if (mpp.find(rem) != mpp.end())
+    //     {
+    //         maxlength = max(maxlength, i - mpp[rem]);
+    //     }
+    //     if (mpp.find(rem) == mpp.end())
+    //     {
+    //         mpp[summation] = i;
+    //     }
+    // }
+
+    int left = 0, right = 0;
+    long long summation = a[0];
+    while (right < n)
+    {
+        while (left < right && summation > k)
+        {
+            summation -= a[left];
+            left++;
+        }
         if (summation == k)
         {
-            maxlength = i + 1;
+            maxlength = max(maxlength, right - left + 1);
         }
-        long long rem = summation - k;
-        if (mpp.find(rem) != mpp.end())
+        right++;
+
+        if (right < n)
         {
-            maxlength = max(maxlength, i - mpp[rem]);
-        }
-        if (mpp.find(rem) == mpp.end())
-        {
-            mpp[summation] = i;
+            summation += a[right];
         }
     }
     // cout << length;
