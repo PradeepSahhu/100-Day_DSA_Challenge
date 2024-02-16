@@ -57,11 +57,43 @@ bool isValid(string s)
     return true;
 }
 
+// it is not working.
+
+bool isValids(string &str)
+{
+
+    int cir, curly, sq;
+    cir = curly = sq = 0;
+    int n = str.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        if (str[i] == '(')
+            cir++;
+        else if (str[i] == '{')
+            curly++;
+
+        else if (str[i] == '[')
+            sq++;
+        else if (str[i] == ')' && str[i - 1] == '(' && cir > 0)
+            cir--;
+        else if (str[i] == '}' && str[i - 1] == '{' && curly > 0)
+            curly--;
+        else if (str[i] == ']' && str[i - 1] == '[' && sq > 0)
+            sq--;
+        else
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main()
 {
 
-    string paranthesis = "()";
-    if (isValid(paranthesis))
+    string paranthesis = "(){}[]";
+    if (isValids(paranthesis))
     {
         cout << "Valid";
     }
