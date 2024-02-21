@@ -55,6 +55,74 @@ vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>> &arr)
     return ans;
 }
 
+vector<vector<int>> mergeOverlapIntervals(vector<vector<int>> &nums)
+{
+    // int n = nums.size();
+    // sort(nums.begin(), nums.end());
+    // vector<vector<int>> ans;
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     int start = nums[i][0];
+    //     int end = nums[i][1];
+    //     while (i < n - 1 && end >= nums[i + 1][0])
+    //     {
+    //         end = max(end, nums[i + 1][1]);
+    //         i++;
+    //     }
+    //     ans.push_back({start, end});
+    // }
+    // return ans;
+
+    //! Brute Force Approach.
+
+    int n = nums.size();
+
+    sort(nums.begin(), nums.end());
+
+    vector<vector<int>> ans;
+
+    for (int i = 0; i < n; i++)
+    {
+        int start = nums[i][0];
+        int end = nums[i][1];
+
+        //     if (!ans.empty() && end <= ans.back()[1])
+        //     {
+        //         continue;
+        //     }
+
+        //     for (int j = i + 1; j < n; j++)
+        //     {
+
+        //         if (end > nums[j][0])
+        //         {
+        //             end = max(end, nums[j][1]);
+        //         }
+        //         else
+        //         {
+        //             break;
+        //         }
+        //     }
+        //     ans.push_back({start, end});
+        // }
+
+        for (int i = 0; i < n; i++)
+        {
+
+            if (ans.empty() || ans.back()[1] < nums[i][0])
+            {
+                ans.push_back(nums[i]);
+            }
+            else
+            {
+                ans.back()[1] = max(ans.back()[1], nums[i][1]);
+            }
+        }
+        return ans;
+    }
+}
+
 int main()
 {
 
@@ -62,7 +130,7 @@ int main()
 
     // sort(v.begin(), v.end());
 
-    vector<vector<int>> ans = mergeOverlappingIntervals(v);
+    vector<vector<int>> ans = mergeOverlapIntervals(v);
 
     for (int i = 0; i < ans.size(); i++)
     {
