@@ -48,6 +48,7 @@ int main()
     {
         cout << a[i] << " ";
     }
+    //! executed the code
     cout << endl;
     for (int i = 0; i < b.size(); i++)
     {
