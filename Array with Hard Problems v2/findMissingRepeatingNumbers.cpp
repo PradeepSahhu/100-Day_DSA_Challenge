@@ -11,18 +11,24 @@ vector<int> findMissingRepeatingNumbers(vector<int> a)
     int n = a.size();
     sort(a.begin(), a.end());
     vector<int> ans;
-    int missing;
+    int missing = 0;
     int repeated;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n - 1; i++)
     {
-
-        if (a[i] != i + 1)
+        cout << a[i] << " ";
+        // missing = missing^i+1;
+        missing = missing ^ (i + 1);
+        missing = missing ^ a[i];
+        cout << "The value of missing is : " << missing << endl;
+        if (a[i] == a[i + 1])
         {
-            missing = i + 1;
             repeated = a[i];
         }
+        cout << 8 ^ 3 << endl;
     }
+
+    cout << endl;
     ans.push_back(repeated);
     ans.push_back(missing);
 
@@ -33,7 +39,11 @@ int main()
 
     vector<int> v = {8, 4, 1, 6, 7, 2, 5, 8};
 
-    findMissingRepeatingNumbers(v);
+    vector<int> ans = findMissingRepeatingNumbers(v);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
     //   Compilation Time code //
     cout << endl;
     auto end = chrono::steady_clock::now();
