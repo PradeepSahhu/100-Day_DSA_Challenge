@@ -75,6 +75,7 @@ int mergeSortApproach(vector<int> &arr, int low, int mid, int high)
     }
     return numberOfInverstions;
 }
+//! not working
 int numberOfInverstionsMergeSortApproach(vector<int> &arr, int low, int high)
 {
     int numberOfInverstions = 0;
