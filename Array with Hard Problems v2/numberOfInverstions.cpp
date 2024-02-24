@@ -25,57 +25,48 @@ int numberOfInverstions(vector<int> &arr)
 
 int mergeSortApproach(vector<int> &arr, int low, int mid, int high)
 {
-    int numberOfInverstions = 0;
-    int n1 = mid - low + 1;
-    int n2 = high - mid;
+    int no_inversions = 0;
+    int left = low;
+    int right = mid + 1;
 
-    vector<int> v1(n1);
-    vector<int> v2(n2);
+    vector<int> temp;
 
-    for (int i = 0; i < n1; i++)
+    while (left <= mid && right <= high)
     {
-        v1[i] = arr[low + i];
-    }
-    for (int j = 0; j < n2; j++)
-    {
-        v2[j] = arr[mid + 1 + j];
-    }
-
-    int i = 0, j = 0, k = low;
-
-    while (i <= n1 && j <= n2)
-    {
-        if (v1[i] <= v2[j])
+        if (arr[left] <= arr[right])
         {
 
-            arr[k] = v1[i];
-            i++;
-            k++;
+            temp.push_back(arr[left]);
+            left++;
         }
         else
         {
-            arr[k] = v2[j];
-            numberOfInverstions += mid - i + 1;
-            j++;
-            k++;
+            temp.push_back(arr[right]);
+            no_inversions += (mid - left + 1);
+            right++;
         }
     }
 
-    while (i < n1)
+    while (left <= mid)
     {
-        arr[k] = v1[i];
-        i++;
-        k++;
+        temp.push_back(arr[left]);
+        left++;
     }
-    while (j < n2)
+    while (right <= high)
     {
-        arr[k] = v2[j];
-        j++;
-        k++;
+        temp.push_back(arr[right]);
+        right++;
     }
-    return numberOfInverstions;
+
+    for (int i = low; i <= high; i++)
+    {
+        arr[i] = temp[i - low];
+    }
+    cout << "The no of inverstions" << no_inversions << endl;
+
+    return no_inversions;
 }
-//! not working
+//! working.
 int numberOfInverstionsMergeSortApproach(vector<int> &arr, int low, int high)
 {
     int numberOfInverstions = 0;
@@ -91,7 +82,7 @@ int numberOfInverstionsMergeSortApproach(vector<int> &arr, int low, int high)
 }
 int main()
 {
-    vector<int> v = {5, 3, 2, 4, 1};
+    vector<int> v = {4, 3, 2, 1};
     cout << "The number of invertions " << numberOfInverstionsMergeSortApproach(v, 0, v.size() - 1) << endl;
 
     //   Compilation Time code //
