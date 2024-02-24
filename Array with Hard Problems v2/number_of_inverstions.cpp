@@ -26,32 +26,37 @@ int mergeSort(vector<int> &v, int low, int mid, int high)
 
     int i = 0, j = 0;
 
-    vector<int> temp;
+    int k = low;
 
-    while (i <= n1 && j <= n2)
+    while (i < n1 && j < n2)
     {
-        if (v1[i] > v2[j])
+        if (v1[i] <= v2[j])
         {
-            number_of_inverstions += (mid - i + 1);
-            temp.push_back(v2[j]);
-            j++;
+
+            v[k] = (v1[i]);
+            i++;
+            k++;
         }
         else
         {
-            temp.push_back(v1[i]);
-            i++;
+            number_of_inverstions += (n1 - i);
+            v[k] = (v2[j]);
+            j++;
+            k++;
         }
     }
 
-    while (i <= n1)
+    while (i < n1)
     {
-        temp.push_back(v1[i]);
+        v[k] = (v1[i]);
         i++;
+        k++;
     }
-    while (j <= n2)
+    while (j < n2)
     {
-        temp.push_back(v2[j]);
+        v[k] = (v2[j]);
         j++;
+        k++;
     }
 
     return number_of_inverstions;
@@ -60,18 +65,19 @@ int mergeSort(vector<int> &v, int low, int mid, int high)
 int numberOfInverstionsMergeSortApproach(vector<int> &v, int low, int high)
 {
     int numberOfInverstions = 0;
-    if (low <= high)
+    if (low < high)
     {
         int mid = (low + high) / 2;
         numberOfInverstions += numberOfInverstionsMergeSortApproach(v, low, mid);
         numberOfInverstions += numberOfInverstionsMergeSortApproach(v, mid + 1, high);
         numberOfInverstions += mergeSort(v, low, mid, high);
     }
+    return numberOfInverstions;
 }
 int main()
 {
 
-    vector<int> v = {4, 3, 2, 1};
+    vector<int> v = {15, 28, 11, 20, 14, 7, 14, 2, 15, 4, 22, 19, 17, 1, 26, 6, 20, 2, 6};
     cout << "The number of invertions " << numberOfInverstionsMergeSortApproach(v, 0, v.size() - 1) << endl;
 
     //   Compilation Time code //
