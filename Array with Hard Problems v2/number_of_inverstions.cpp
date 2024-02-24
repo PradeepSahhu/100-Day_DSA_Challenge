@@ -1,0 +1,83 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <chrono>
+using namespace std;
+
+auto start = chrono::steady_clock::now();
+
+int mergeSort(vector<int> &v, int low, int mid, int high)
+{
+    int number_of_inverstions = 0;
+
+    int n1 = mid - low + 1;
+    int n2 = high - mid;
+
+    vector<int> v1(n1);
+    vector<int> v2(n2);
+
+    for (int i = 0; i < n1; i++)
+    {
+        v1[i] = v[i + low];
+    }
+    for (int j = 0; j < n2; j++)
+    {
+        v2[j] = v[mid + 1 + j];
+    }
+
+    int i = 0, j = 0;
+
+    vector<int> temp;
+
+    while (i <= n1 && j <= n2)
+    {
+        if (v1[i] > v2[j])
+        {
+            number_of_inverstions += (mid - i + 1);
+            temp.push_back(v2[j]);
+            j++;
+        }
+        else
+        {
+            temp.push_back(v1[i]);
+            i++;
+        }
+    }
+
+    while (i <= n1)
+    {
+        temp.push_back(v1[i]);
+        i++;
+    }
+    while (j <= n2)
+    {
+        temp.push_back(v2[j]);
+        j++;
+    }
+
+    return number_of_inverstions;
+}
+
+int numberOfInverstionsMergeSortApproach(vector<int> &v, int low, int high)
+{
+    int numberOfInverstions = 0;
+    if (low <= high)
+    {
+        int mid = (low + high) / 2;
+        numberOfInverstions += numberOfInverstionsMergeSortApproach(v, low, mid);
+        numberOfInverstions += numberOfInverstionsMergeSortApproach(v, mid + 1, high);
+        numberOfInverstions += mergeSort(v, low, mid, high);
+    }
+}
+int main()
+{
+
+    vector<int> v = {4, 3, 2, 1};
+    cout << "The number of invertions " << numberOfInverstionsMergeSortApproach(v, 0, v.size() - 1) << endl;
+
+    //   Compilation Time code //
+    cout << endl;
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
+    return 0;
+}
