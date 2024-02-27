@@ -7,7 +7,7 @@ auto start = chrono::steady_clock::now();
 
 int lowerBound(vector<int> arr, int n, int x)
 {
-   
+
     int left = 0;
     int right = n - 1;
     int ans = n;
@@ -26,6 +26,38 @@ int lowerBound(vector<int> arr, int n, int x)
         }
     }
     return ans;
+}
+
+//! Alternative approach.
+
+int lowerBounding(vector<int> &nums, int n, int x)
+{
+    if (nums[n - 1] < x)
+    {
+        return n;
+    }
+    else if (nums[0] > x)
+    {
+        return 0;
+    }
+    else
+    {
+        int left = 0;
+        int right = n - 1;
+        while (left < right)
+        {
+            int mid = (left + right) / 2;
+            if (nums[mid] < x)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid;
+            }
+        }
+        return right;
+    }
 }
 
 int main()
