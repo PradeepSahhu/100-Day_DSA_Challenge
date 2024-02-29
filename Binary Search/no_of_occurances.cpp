@@ -55,6 +55,8 @@ int lastOccurance(vector<int> arr, int n, int x)
     return last;
 }
 
+
+
 int count(vector<int> &arr, int n, int x)
 {
     // Write Your Code Here
