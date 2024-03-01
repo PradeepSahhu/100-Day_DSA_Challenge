@@ -33,6 +33,41 @@ int searchMinimum_in_rorated_sorted_array(vector<int> &arr)
     }
     return minimum;
 }
+
+int findMin(vector<int> &nums)
+{
+
+    int n = nums.size();
+    int minimum = INT_MAX;
+
+    int left = 0;
+    int right = n - 1;
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (nums[left] <= nums[right])
+        {
+            minimum = min(minimum, nums[left]);
+            break;
+        }
+        if (nums[left] <= nums[mid])
+        {
+            minimum = min(minimum, nums[left]);
+
+            // left side sorted
+
+            left = mid + 1;
+        }
+        else
+        {
+            // right side sorted.
+            minimum = min(minimum, nums[mid]);
+            right = mid - 1;
+        }
+    }
+    return minimum;
+}
 int main()
 {
     vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
