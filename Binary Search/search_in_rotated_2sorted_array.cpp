@@ -5,7 +5,7 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
-int search_in_rorated_sorted_array(vector<int> &arr)
+int searchMinimum_in_rorated_sorted_array(vector<int> &arr)
 {
     int n = arr.size();
     int minimum = INT_MAX;
@@ -16,33 +16,19 @@ int search_in_rorated_sorted_array(vector<int> &arr)
     while (left <= right)
     {
         int mid = (left + right) / 2;
-        if (arr[mid] < minimum)
+        if (arr[left] <= arr[mid])
         {
-            minimum = arr[mid];
-        }
-        if (arr[left] <= arr[right])
-        {
+            minimum = min(minimum, arr[left]);
+
             // left side sorted
-            if (arr[left] < minimum && minimum < arr[mid])
-            {
-                right = mid - 1;
-            }
-            else
-            {
-                left = mid + 1;
-            }
+
+            left = mid + 1;
         }
         else
         {
-            // right side sorted
-            if (arr[mid] < minimum && minimum < arr[right])
-            {
-                left = mid + 1;
-            }
-            else
-            {
-                right = mid - 1;
-            }
+            // right side sorted.
+            minimum = min(minimum, arr[mid]);
+            right = mid - 1;
         }
     }
     return minimum;
@@ -50,6 +36,7 @@ int search_in_rorated_sorted_array(vector<int> &arr)
 int main()
 {
     vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+    cout << searchMinimum_in_rorated_sorted_array(nums);
 
     //   Compilation Time code //
     cout << endl;
