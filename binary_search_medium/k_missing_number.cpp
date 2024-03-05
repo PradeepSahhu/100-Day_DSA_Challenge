@@ -7,8 +7,7 @@ auto start = chrono::steady_clock::now();
 
 int findKthPositive(vector<int> &arr, int k)
 {
-
-    return 9;
+    // find the number which is missing at kth position.
 }
 int main()
 {
