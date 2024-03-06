@@ -14,7 +14,7 @@ int findKthPositive(vector<int> &arr, int k)
 
     while (left <= right)
     {
-        
+
         int mid = (left + right) / 2;
         int missing = arr[mid] - (mid + 1);
         if (missing < k)
@@ -30,6 +30,7 @@ int findKthPositive(vector<int> &arr, int k)
 }
 int main()
 {
+    vector<int> v = {2, 3, 4, 6, 9};
 
     //   Compilation Time code //
     cout << endl;
