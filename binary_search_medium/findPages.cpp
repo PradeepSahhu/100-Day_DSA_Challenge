@@ -52,6 +52,7 @@ int findPages(vector<int> &arr, int n, int m)
 }
 int main()
 {
+    vector<int> v = {1, 2, 3, 4, 5, 6};
 
     //   Compilation Time code //
     cout << endl;
