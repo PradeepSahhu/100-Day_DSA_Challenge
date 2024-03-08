@@ -51,6 +51,7 @@ int main()
 {
 
     vector<int> v = {1, 2, 3};
+    splitArray(v, 2);
 
     //   Compilation Time code //
     cout << endl;
