@@ -27,6 +27,7 @@ int numberOfGasStationsRequired(long double dist, vector<int> &arr)
         }
         cnt += numberInBetween;
     }
+
     return cnt;
 }
 
