@@ -66,8 +66,8 @@ int findPagesOptimized(vector<int> &arr, int n, int m)
     while (left <= right)
     {
         int mid = (left + right) / 2;
-        int students = countStudents(arr, m);
-        if (students < m)
+        int students = countStudents(arr, mid);
+        if (students <= m)
         {
             right = mid - 1;
         }
@@ -75,8 +75,8 @@ int findPagesOptimized(vector<int> &arr, int n, int m)
         {
             left = mid + 1;
         }
-        return left;
     }
+    return left;
 }
 int main()
 {
