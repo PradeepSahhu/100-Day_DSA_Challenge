@@ -5,7 +5,7 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
-//! This question is based upon finding the minimum distance between consecutive cows having maximum distance.🥲
+//! This question is based upon such that the minimum distance between consecutive cows having maximum distance. possible🥲
 
 bool canWePlace(vector<int> &stalls, int dist, int cows)
 {
@@ -24,30 +24,78 @@ bool canWePlace(vector<int> &stalls, int dist, int cows)
     }
     return false;
 }
+// int aggressiveCows(vector<int> &stalls, int k)
+// {
+//     int n = stalls.size();
+
+//     sort(stalls.begin(), stalls.end());
+
+//     int low = 1, high = stalls[n - 1] - stalls[0];
+
+//     while (low <= high)
+//     {
+//         int mid = (low + high) / 2;
+//         if (canWePlace(stalls, mid, k) == true)
+//         {
+//             low = mid + 1;
+//         }
+//         else
+//             high = mid - 1;
+//     }
+//     return high;
+// }
+
+//! Alternative solution
+
+bool canWePlaceCows(vector<int> v, int dist, int cows)
+{
+    int n = v.size();
+    int cntCows = 1;
+    int last = v[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (v[i] - last >= dist)
+        {
+            cntCows++;
+            last = v[i];
+        }
+        if (cntCows >= cows)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 int aggressiveCows(vector<int> &stalls, int k)
 {
     int n = stalls.size();
-
+    if (k > n)
+        return -1;
     sort(stalls.begin(), stalls.end());
 
-    int low = 1, high = stalls[n - 1] - stalls[0];
+    int left = 1;
+    int right = stalls[n - 1] - stalls[0];
 
-    while (low <= high)
+    while (left <= right)
     {
-        int mid = (low + high) / 2;
-        if (canWePlace(stalls, mid, k) == true)
+        int mid = (left + right) / 2;
+        if (canWePlaceCows(stalls, mid, k) == true)
         {
-            low = mid + 1;
+            left = mid + 1;
         }
         else
-            high = mid - 1;
+        {
+            right = mid - 1;
+        }
     }
-    return high;
+    return right;
 }
 
 int main()
 {
-    vector<int> v = {0, 3, 4, 7, 10, 8};
+    vector<int> v = {0, 3, 4, 7, 10, 9};
+    cout << aggressiveCows(v, 4);
 
     //   Compilation Time code //
     cout << endl;
