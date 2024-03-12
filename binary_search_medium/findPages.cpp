@@ -5,21 +5,23 @@ using namespace std;
 
 auto start = chrono::steady_clock::now();
 
+//! Allocate the books to m students such that the maximum no. of pages that are assigned to student is minimum.
+
 int countStudents(vector<int> &arr, int pages)
 {
-    int n = arr.size(); // size of array.
+    int n = arr.size();
     int students = 1;
     long long pagesStudent = 0;
     for (int i = 0; i < n; i++)
     {
-        if (pagesStudent + arr[i] <= pages)
+        if (pagesStudent + arr[i] <= pages) // maximum allowed books.
         {
-            // add pages to current student
+
             pagesStudent += arr[i];
         }
         else
         {
-            // add pages to next student
+
             students++;
             pagesStudent = arr[i];
         }
@@ -29,7 +31,9 @@ int countStudents(vector<int> &arr, int pages)
 
 int findPages(vector<int> &arr, int n, int m)
 {
-    // book allocation impossible:
+    // m : number of students
+    // n :
+    //  book allocation impossible:
     if (m > n)
         return -1;
 
@@ -50,9 +54,34 @@ int findPages(vector<int> &arr, int n, int m)
     }
     return low;
 }
+
+//! Alternate solutions.
+
+int findPagesOptimized(vector<int> &arr, int n, int m)
+{
+    // m : No. of Students to whom book needs to be allocated.
+    int left = *std::max_element(arr.begin(), arr.end());
+    int right = accumulate(arr.begin(), arr.end(), 0);
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        int students = countStudents(arr, m);
+        if (students < m)
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+        return left;
+    }
+}
 int main()
 {
-    vector<int> v = {1, 2, 3, 4, 5, 6};
+    vector<int> v = {25, 46, 28, 49, 24};
+    cout << findPagesOptimized(v, 5, 4);
 
     //   Compilation Time code //
     cout << endl;
