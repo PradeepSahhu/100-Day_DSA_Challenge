@@ -57,8 +57,31 @@ int findPages(vector<int> &arr, int n, int m)
 
 //! Alternate solutions.
 
+int countStudentsBookAllocated(vector<int> arr, int maxPages)
+{
+    int n = arr.size();
+    int countStudents = 1;
+    int currentPages = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (currentPages + arr[i] <= maxPages)
+        {
+            currentPages += arr[i];
+        }
+        else
+        {
+            countStudents++;
+            currentPages = arr[i];
+        }
+    }
+    return countStudents;
+}
+
 int findPagesOptimized(vector<int> &arr, int n, int m)
 {
+    if (m > n)
+        return -1;
     // m : No. of Students to whom book needs to be allocated.
     int left = *std::max_element(arr.begin(), arr.end());
     int right = accumulate(arr.begin(), arr.end(), 0);
@@ -66,7 +89,7 @@ int findPagesOptimized(vector<int> &arr, int n, int m)
     while (left <= right)
     {
         int mid = (left + right) / 2;
-        int students = countStudents(arr, mid);
+        int students = countStudentsBookAllocated(arr, mid);
         if (students <= m)
         {
             right = mid - 1;
