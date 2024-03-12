@@ -26,11 +26,15 @@ int findKthPositive(vector<int> &arr, int k)
             right = mid - 1;
         }
     }
-    return k + left;
+    // return k + left;
+    int val = k - (arr[right] - (right + 1));
+    // cout << val << endl;
+    return arr[right] + val;
 }
 int main()
 {
-    vector<int> v = {2, 3, 4, 6, 9};
+    vector<int> v = {2, 3, 4, 7, 11};
+    cout << findKthPositive(v, 5);
 
     //   Compilation Time code //
     cout << endl;
