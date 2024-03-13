@@ -4,6 +4,8 @@
 using namespace std;
 
 auto start = chrono::steady_clock::now();
+
+//! Brute force Approach.
 int main()
 {
 

@@ -50,8 +50,8 @@ int splitArray(vector<int> &a, int k)
 int main()
 {
 
-    vector<int> v = {1, 2, 3};
-    splitArray(v, 2);
+    vector<int> v = {7, 2, 5, 10, 8};
+    cout << splitArray(v, 2);
 
     //   Compilation Time code //
     cout << endl;
