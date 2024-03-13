@@ -6,8 +6,47 @@ using namespace std;
 auto start = chrono::steady_clock::now();
 
 //! Brute force Approach.
+
+long double placeGasStations(vector<int> v, int k)
+{
+    int n = v.size();
+
+    vector<int> howMany(n - 1, 0);
+
+    for (int gas = 1; gas <= k; gas++)
+    {
+        long double maxSection = -1;
+        int maxInd = -1;
+        for (int i = 0; i < n - 1; i++)
+        {
+            long double diff = v[i + 1] - v[i];
+            long double sectionLen = diff / (long double)(howMany[i] + 1);
+            if (maxSection < sectionLen)
+            {
+                maxSection = sectionLen;
+                maxInd = i;
+            }
+        }
+        howMany[maxInd]++;
+    }
+
+    long double maxAns = -1;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        long double diff = (v[i + 1] - v[i]);
+        long double sectionLen = diff / (long double)(howMany[i] + 1);
+        maxAns = max(maxAns, sectionLen);
+    }
+
+    return maxAns;
+}
+
 int main()
 {
+
+    vector<int> v = {1, 2, 3, 4, 5, 6, 7};
+    cout << placeGasStations(v, 6);
 
     //   Compilation Time code //
     cout << endl;
