@@ -42,6 +42,37 @@ long double placeGasStations(vector<int> v, int k)
     return maxAns;
 }
 
+//! Better Approach.
+
+long double putGasStations(vector<int> &v, int k)
+{
+    int n = v.size();
+    vector<int> howMany(n - 1, 0);
+
+    priority_queue<pair<long double, int>> pq;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        pq.push({(long double)(v[i + 1] - v[i]), i});
+    }
+
+    for (int gasStations = 1; gasStations <= k; gasStations++)
+    {
+
+        long double maxSectionLen = pq.top().first;
+        int maxInd = pq.top().second;
+        pq.pop();
+        howMany[maxInd]++;
+
+        long double iniDiff = (long double)v[maxInd + 1] - v[maxInd];
+        long double newSecDiff = iniDiff / (long double)(howMany[maxInd] + 1);
+
+        pq.push({newSecDiff, maxInd});
+    }
+
+    return pq.top().first;
+}
+
 int main()
 {
 
