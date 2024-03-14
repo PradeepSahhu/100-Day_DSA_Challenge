@@ -12,20 +12,22 @@ double findMedianSortedArrays(vector<int> &a, vector<int> &b)
 
     vector<int> ans(n + m);
     std::merge(a.begin(), a.end(), b.begin(), b.end(), ans.begin());
+    int index = (n + m);
 
-    int index = (n + m) / 2;
-    if (index % 2 == 0)
+    if ((index) % 2 == 0)
     {
-        return (ans[index] + ans[index]) / 2;
+        index = index / 2;
+
+        return ((double)(ans[index] + ans[index - 1]) / 2.0);
     }
-    return ans[index];
+    return ans[(int)(index / 2.0)];
 }
 
 int main()
 {
 
     vector<int> v = {1, 3};
-    vector<int> v1 = {2};
+    vector<int> v1 = {2, 4};
 
     cout << findMedianSortedArrays(v, v1);
 
