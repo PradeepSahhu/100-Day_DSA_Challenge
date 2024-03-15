@@ -34,6 +34,7 @@ int kthelement(int array1[], int array2[], int m, int n, int k)
     }
     return answer;
 }
+// Add and alternative best solution.
 int main()
 {
 
