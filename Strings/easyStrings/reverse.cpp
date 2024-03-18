@@ -12,7 +12,7 @@ string largestOddNumber(string num)
     string res = "";
     for (int i = len - 1; i >= 0; i--)
     {
-        if ((num[i] - '0') & 1) // convert from string digit to integer, then check it is odd, as the LSB must be 1
+        if ((num[i] - '0') & 1)
             append = true;
         if (append)
             res += num[i];
@@ -22,6 +22,9 @@ string largestOddNumber(string num)
 }
 int main()
 {
+    string v = "1243";
+    string v1 = "52";
+    cout << largestOddNumber(v1);
 
     //   Compilation Time code //
     cout << endl;
