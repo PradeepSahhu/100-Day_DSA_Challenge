@@ -85,8 +85,43 @@ int maxOnes(vector<vector<int>> &v)
             maxOnesrow = currentMax;
             maxIndex = i;
         }
-     }
+    }
     return maxIndex;
+}
+
+//! search in 2D matrix.
+// convert 2d into 1d matrix.
+
+// row = index/m;
+// col = index%m;
+
+bool searchIn2dMatrix(vector<vector<int>> &v, int target)
+{
+    int n = v.size();
+    int m = v[0].size();
+
+    int left = 0;
+    int right = (n * m) - 1;
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        int row = mid / m, col = mid % m;
+
+        if (v[row][col] == target)
+        {
+            return true;
+        }
+        else if (v[row][col] < target)
+        {
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1;
+        }
+    }
+    return false;
 }
 
 int main()
@@ -98,10 +133,10 @@ int main()
         {0, 1, 1, 1, 1, 1, 1, 1},
         {0, 1, 1, 1, 1, 1, 1}};
     // cout << FirstOccurance(v, 1);
-    cout << maxOnes(v);
+    std::cout << maxOnes(v);
 
     //   Compilation Time code //
-    cout << endl;
+    std::cout << endl;
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
