@@ -95,7 +95,7 @@ int maxOnes(vector<vector<int>> &v)
 // row = index/m;
 // col = index%m;
 
-bool searchIn2dMatrix(vector<vector<int>> &v, int target)
+bool searchIn2dMatrixes(vector<vector<int>> &v, int target)
 {
     int n = v.size();
     int m = v[0].size();
@@ -133,10 +133,10 @@ int main()
         {0, 1, 1, 1, 1, 1, 1, 1},
         {0, 1, 1, 1, 1, 1, 1}};
     // cout << FirstOccurance(v, 1);
-    std::cout << maxOnes(v);
+    cout << maxOnes(v);
 
     //   Compilation Time code //
-    std::cout << endl;
+    cout << endl;
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
