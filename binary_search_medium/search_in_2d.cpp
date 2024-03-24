@@ -39,23 +39,66 @@ int FirstOccurance(vector<int> &v, int k)
     while (left <= right)
     {
         int mid = (left + right) / 2;
-        if (v[mid] <= k)
-        {
-            right = mid - 1;
-        }
-        else
+        if (v[mid] < k)
         {
             left = mid + 1;
         }
+        else
+        {
+            right = mid - 1;
+        }
     }
-    return right;
+    return left;
+}
+
+//! Have the row with maximum 1's in a 2D matrix.
+
+int maxOnes(vector<vector<int>> &v)
+{
+    int rowSize = v.size();
+    int maxOnesrow = -1;
+    int maxIndex = -1;
+    int currentMax = -1;
+
+    for (int i = 0; i < rowSize; i++)
+    {
+        int n = v[i].size();
+        int left = 0;
+        int right = n - 1;
+
+        while (left <= right)
+        {
+            int mid = (left + right) / 2;
+            if (v[i][mid] < 1)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+        currentMax = n - left;
+
+        if (maxOnesrow < currentMax)
+        {
+            maxOnesrow = currentMax;
+            maxIndex = i;
+        }
+     }
+    return maxIndex;
 }
 
 int main()
 {
 
-    vector<int> v = {0, 0, 1, 1, 1};
-    cout << FirstOccurance(v, 1);
+    vector<vector<int>> v = {
+        {0, 0, 0, 1, 1, 1, 1, 1, 1, 1},
+        {0, 0, 0, 0, 0},
+        {0, 1, 1, 1, 1, 1, 1, 1},
+        {0, 1, 1, 1, 1, 1, 1}};
+    // cout << FirstOccurance(v, 1);
+    cout << maxOnes(v);
 
     //   Compilation Time code //
     cout << endl;
