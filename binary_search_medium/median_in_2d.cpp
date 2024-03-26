@@ -35,27 +35,38 @@ int largestElement(vector<vector<int>> &v)
     return largest;
 }
 
-int blackBox(vector<vector<int>> &v, int x)
+int upperbounding(vector<int> &nums, int x, int n)
+{
+    int left = 0;
+    int right = n - 1;
+    int ans = 0;
+
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (nums[mid] <= x)
+        {
+            ans = mid + 1;
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1;
+        }
+    }
+    return left;
+    // return ans;
+}
+
+int smallCountEql(vector<vector<int>> &v, int x)
 {
     int n = v.size();
+    int m = v[0].size();
     int summation = 0;
 
     for (int i = 0; i < n; i++)
     {
-        int low = v[i][0];
-        while (low <= x)
-        {
-            int mid = (low + x) / 2;
-            if (v[i][mid] <= x)
-            {
-                low = mid + 1;
-            }
-            else
-            {
-                x = mid - 1;
-            }
-        }
-        summation += low;
+        summation += upperbounding(v[i], x, m);
     }
     return summation;
 }
@@ -68,11 +79,13 @@ int median_of_2d(vector<vector<int>> &v)
     int low = lowestElement(v);
     int high = largestElement(v);
 
+    int req = (n * m) / 2;
+
     while (low <= high)
     {
         int mid = (low + high) / 2;
-        int smallerEquals = blackBox(v, mid);
-        if (smallerEquals <= mid)
+        int smallerEquals = smallCountEql(v, mid);
+        if (smallerEquals <= req)
         {
             low = mid + 1;
         }
