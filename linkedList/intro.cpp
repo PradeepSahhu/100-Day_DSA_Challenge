@@ -48,25 +48,26 @@ auto start = chrono::steady_clock::now();
 // }
 
 //! Structure Node.
-struct Node
-{
-    int data;
-    Node *next;
+// struct Node
+// {
+//     int data;
+//     Node *next;
 
-    Node(int data1, Node *next1)
-    {
-        data = data1;
-        next = next1;
-    }
-    Node(int data1)
-    {
-        data = data1;
-        next = nullptr;
-    }
-};
+//     Node(int data1, Node *next1)
+//     {
+//         data = data1;
+//         next = next1;
+//     }
+//     Node(int data1)
+//     {
+//         data = data1;
+//         next = nullptr;
+//     }
+// };
 
 class Node
 {
+public:
     int data;
     Node *next;
 
@@ -80,7 +81,35 @@ class Node
         data = data1;
         next = nullptr;
     }
+    void address(Node *addr)
+    {
+        next = addr;
+    }
 };
+
+Node vectorToLinkedList(vector<int> v)
+{
+    Node head(v[0]);
+    for (int i = 1; i < v.size(); i++)
+    {
+        Node temp(v[i]);
+        head.address(&temp);
+        head = temp;
+    }
+    return head;
+}
+
+void iterationsOfNodes(Node head)
+{
+
+    Node *temp = &head;
+
+    while (temp != nullptr)
+    {
+        cout << temp->data << endl;
+        temp = temp->next;
+    }
+}
 
 int main()
 {
