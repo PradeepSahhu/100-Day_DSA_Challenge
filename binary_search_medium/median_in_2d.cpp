@@ -29,7 +29,7 @@ int largestElement(vector<vector<int>> &v)
     {
         if (v[i][m - 1] > largest)
         {
-            largest = v[i][0];
+            largest = v[i][m - 1];
         }
     }
     return largest;
@@ -42,8 +42,6 @@ int median_of_2d(vector<vector<int>> &v)
 
     int low = lowestElement(v);
     int high = largestElement(v);
-
-    cout << low << "  " << high << endl;
 }
 
 int main()
@@ -53,7 +51,7 @@ int main()
         {2, 3, 4, 5, 10},
         {9, 10, 12, 14, 16}};
 
-    median_of_2d(v);
+    cout << median_of_2d(v);
 
     //   Compilation Time code //
     cout << endl;
