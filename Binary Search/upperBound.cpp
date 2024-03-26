@@ -62,7 +62,8 @@ int upperbounding(vector<int> &nums, int x, int n)
             right = mid - 1;
         }
     }
-    return ans;
+    return left;
+    // return ans;
 }
 int main()
 {
