@@ -44,6 +44,7 @@ public:
                 Node *temp = mover->next;
                 mover->next = temp->next;
                 delete temp;
+                break;
             }
             mover = mover->next;
         }
