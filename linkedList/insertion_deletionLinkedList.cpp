@@ -21,8 +21,33 @@ public:
         data = data1;
     }
 
-    void deletionInBeg(Node *head)
+    Node *deletionInBeg(Node *head)
     {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    Node *deleteInMid(Node *head, int val)
+    {
+
+        if (head->data == val)
+            return head->deletionInBeg(head);
+
+        Node *mover = head;
+
+        while (mover->next != nullptr)
+        {
+            if (mover->next->data == val)
+            {
+                Node *temp = mover->next;
+                mover->next = temp->next;
+                delete temp;
+            }
+            mover = mover->next;
+        }
+        return head;
     }
 };
 int main()
