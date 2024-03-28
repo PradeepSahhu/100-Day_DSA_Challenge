@@ -45,10 +45,75 @@ void insertion_in_head(Node *&head, int element)
     head = newHead;
 }
 
+void insertion_in_position(Node *&head, int position, int element)
+{
+    if (position == 1)
+    {
+        insertion_in_head(head, element);
+    }
+    int cnt = 2;
+    Node *newNode = new Node(element);
+    Node *temp = head;
+    while (temp != NULL)
+    {
+
+        if (cnt == position)
+        {
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        cnt++;
+        temp = temp->next;
+    }
+}
+
+void insert_in_element(Node *&head, int elementToReplace, int element)
+{
+    if (head->data == elementToReplace)
+    {
+        insertion_in_head(head, element);
+    }
+    Node *newNode = new Node(element);
+    Node *temp = head;
+
+    while (temp->next != NULL)
+    {
+        if (temp->next->data == elementToReplace)
+        {
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+    }
+}
+void insert_in_tail(Node *&head, int element)
+{
+    Node *newNode = new Node(element);
+    Node *temp = head;
+
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
 int main()
 {
     Node *head = new Node(2); // new keyword returns a pointer.
     insertion_in_head(head, 5);
+    traversal(head);
+    cout << endl;
+    insertion_in_position(head, 2, 10);
+    traversal(head);
+    cout << endl;
+    insert_in_element(head, 10, 6);
+    traversal(head);
+    cout << endl;
+    insert_in_tail(head, 30);
     traversal(head);
 
     //   Compilation Time code //
