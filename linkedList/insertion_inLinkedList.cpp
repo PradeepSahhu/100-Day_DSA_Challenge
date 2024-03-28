@@ -48,7 +48,7 @@ void insertion_in_head(Node *&head, int element)
 
 void insertion_in_position(Node *&head, int position, int element)
 {
-    if (position == 1)
+    if (position == 1 || head == NULL)
     {
         insertion_in_head(head, element);
     }
@@ -71,6 +71,9 @@ void insertion_in_position(Node *&head, int position, int element)
 //! Insert the element in to move the element from its position.
 void insert_in_element(Node *&head, int elementToReplace, int element)
 {
+    if (head == NULL)
+        return;
+
     if (head->data == elementToReplace)
     {
         insertion_in_head(head, element);
@@ -92,6 +95,10 @@ void insert_in_element(Node *&head, int elementToReplace, int element)
 //! Insert in the tail.
 void insert_in_tail(Node *&head, int element)
 {
+    if (head == NULL)
+    {
+        insertion_in_head(head, element);
+    }
     Node *newNode = new Node(element);
     Node *temp = head;
 
@@ -106,6 +113,7 @@ void insert_in_tail(Node *&head, int element)
 int main()
 {
     Node *head = new Node(2); // new keyword returns a pointer.
+
     insertion_in_head(head, 5);
     traversal(head);
     cout << endl;
