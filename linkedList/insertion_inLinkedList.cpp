@@ -38,14 +38,17 @@ void traversal(Node *head)
 }
 
 //?Insertion in head.
-Node *insertion_in_head(Node *head, int element)
+void insertion_in_head(Node *&head, int element)
 {
-    return head;
+    Node *newHead = new Node(element);
+    newHead->next = head;
+    head = newHead;
 }
 
 int main()
 {
     Node *head = new Node(2); // new keyword returns a pointer.
+    insertion_in_head(head, 5);
     traversal(head);
 
     //   Compilation Time code //
