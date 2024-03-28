@@ -44,6 +44,7 @@ void insertion_in_head(Node *&head, int element)
     newHead->next = head;
     head = newHead;
 }
+//! Insert the element according to its position.
 
 void insertion_in_position(Node *&head, int position, int element)
 {
@@ -67,7 +68,7 @@ void insertion_in_position(Node *&head, int position, int element)
         temp = temp->next;
     }
 }
-
+//! Insert the element in to move the element from its position.
 void insert_in_element(Node *&head, int elementToReplace, int element)
 {
     if (head->data == elementToReplace)
@@ -88,6 +89,7 @@ void insert_in_element(Node *&head, int elementToReplace, int element)
         temp = temp->next;
     }
 }
+//! Insert in the tail.
 void insert_in_tail(Node *&head, int element)
 {
     Node *newNode = new Node(element);
