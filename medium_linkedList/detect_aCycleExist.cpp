@@ -46,6 +46,7 @@ void traversal(Node *head)
 int main()
 {
     Node *head = new Node(1,nullptr);
+    
 
     Node *second = new Node(2,head);
     Node *third = new Node(3,second);
@@ -54,6 +55,14 @@ int main()
     Node *sixth = new Node(6,fifth);
     Node *seventh = new Node(7,sixth);
     Node*last = new Node(8,seventh);
+
+    head->next = second;
+    second->next = third;
+    third->next = fourth;
+    fourth->next = fifth;
+    fifth->next = sixth;
+    sixth->next = seventh;
+    last->next = head;
 
 
     traversal(head);
