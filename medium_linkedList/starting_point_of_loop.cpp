@@ -42,49 +42,93 @@ void traversal(Node *head)
         temp = temp->next;
     }
 }
-int detectALoop(Node*head){
-    Node* temp = head;
 
-    set<Node* >st;
+//!using hashtable approach.
 
-    while(temp!=NULL){
-         if(!st.empty() && st.find(temp)!=st.end()){
-            return 1;
-            break;
+Node* hashTableApproach(Node* head){
+
+    Node* slow = head;
+
+    set<Node*> st;
+    while(slow!=NULL){
+        if(st.find(slow)!=st.end()){
+            return slow;
         }
-        st.insert(temp);
-        cout<<"executing"<<endl;
 
-       
-        temp= temp->next;
+        st.insert(slow);
+        slow=slow->next;
     }
-    return 0;
+    return NULL;
 }
 
-//!Alternative approach using the slow and fast pointers.
 
-int detectALoopPointer(Node* head){
+//!Alternative approach using the slow and fast pointers.(best Approach)
+
+Node* StartingAndEndingPoint(Node* head){
+
+    if(head==NULL || head->next==NULL){
+        return NULL;
+    }
     Node*slow = head;
     Node*fast = head;
-
-    while(fast!=NULL || fast->next!=NULL){
-         slow = slow->next;
+    Node*entry = head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow = slow->next;
         fast = fast->next->next;
         if(slow==fast){
-            cout<<fast->data<<endl;
-            return 1;
+           break;
         }
-       
     }
-    cout<<fast->data<<endl;
-    return 0;
+
+     while(slow!=entry){
+                slow = slow->next;
+                entry=entry->next;
+            }
+            return entry;
+    return NULL;
+    
+}
+
+//!Alternative solution of the above.
+
+
+Node* firstNode(Node* head) {
+    if (head == nullptr || head->next == nullptr) {
+        return nullptr;
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+
+
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            break;
+        }
+    }
+
+
+    if (slow != fast) {
+        return nullptr;
+    }
+
+
+    fast = head;
+    while (slow != fast) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    return slow;
 }
 
 
 int main()
 {
     Node *head = new Node(1,nullptr);
-    
+
 
     Node *second = new Node(2,head);
     Node *third = new Node(3,second);
@@ -103,21 +147,15 @@ int main()
     seventh->next = last;
     last->next = third;
 
-    // Node *head2 = new Node(10);
-    // Node *second2 = new Node(20);
-    // Node *third2 = new Node(30);
-    // Node *fourth2 = new Node(40);
-
-    // head2->next = second2;
-    // second2->next = third2;
-    // third2->next = fourth2;
-    // fourth2->next = nullptr;
+  
 
 
  
 
     // cout<<detectALoop(head);
-    cout<<detectALoopPointer(head);
+
+    // cout<<hashTableApproach(head)->data;
+    cout<<StartingAndEndingPoint(head)->data;
 
 
                  //   Compilation Time code //
