@@ -42,25 +42,6 @@ void traversal(Node *head)
         temp = temp->next;
     }
 }
-
-// int detectALoop(Node*head){
-//     Node* temp = head;
-
-//     map<int,Node* > mpp;
-
-//     while(temp!=NULL){
-//          if(!mpp.empty() && mpp.find(temp->data)!=mpp.end()){
-//             return 1;
-//             break;
-//         }
-//         mpp[temp->data] = temp;
-//         cout<<"executing"<<endl;
-
-       
-//         temp= temp->next;
-//     }
-//     return 0;
-// }
 int detectALoop(Node*head){
     Node* temp = head;
 
