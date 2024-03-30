@@ -43,6 +43,59 @@ void traversal(Node *head)
     }
 }
 
+// int detectALoop(Node*head){
+//     Node* temp = head;
+
+//     map<int,Node* > mpp;
+
+//     while(temp!=NULL){
+//          if(!mpp.empty() && mpp.find(temp->data)!=mpp.end()){
+//             return 1;
+//             break;
+//         }
+//         mpp[temp->data] = temp;
+//         cout<<"executing"<<endl;
+
+       
+//         temp= temp->next;
+//     }
+//     return 0;
+// }
+int detectALoop(Node*head){
+    Node* temp = head;
+
+    set<Node* >st;
+
+    while(temp!=NULL){
+         if(!st.empty() && st.find(temp)!=st.end()){
+            return 1;
+            break;
+        }
+        st.insert(temp);
+        cout<<"executing"<<endl;
+
+       
+        temp= temp->next;
+    }
+    return 0;
+}
+
+//!Alternative approach using the slow and fast pointers.
+
+int detectALoopPointer(Node* head){
+    Node*slow = head;
+    Node*fast = head;
+
+    while(fast!=NULL || fast->next!=NULL){
+         slow = slow->next;
+        fast = fast->next->next;
+        if(slow==fast){
+            return 1;
+        }
+       
+    }
+    return 0;
+}
 int main()
 {
     Node *head = new Node(1,nullptr);
@@ -62,10 +115,24 @@ int main()
     fourth->next = fifth;
     fifth->next = sixth;
     sixth->next = seventh;
+    seventh->next = last;
     last->next = head;
 
+    Node *head2 = new Node(10);
+    Node *second2 = new Node(20);
+    Node *third2 = new Node(30);
+    Node *fourth2 = new Node(40);
 
-    traversal(head);
+    head2->next = second2;
+    second2->next = third2;
+    third2->next = fourth2;
+    fourth2->next = nullptr;
+
+
+ 
+
+    // cout<<detectALoop(head);
+    cout<<detectALoopPointer(head);
 
 
                  //   Compilation Time code //
