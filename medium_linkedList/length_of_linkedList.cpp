@@ -74,17 +74,6 @@ int lengthOfLoop(Node *head) {
 int main()
 {
 
-     Node *head = new Node(1,nullptr);
-
-
-    Node *second = new Node(2,head);
-    Node *third = new Node(3,second);
-    Node *fourth = new Node(4,third);
-    Node *fifth = new Node(5,fourth);
-    Node *sixth = new Node(6,fifth);
-    Node *seventh = new Node(7,sixth);
-    Node*last = new Node(8,seventh);
-
     Node *head = new Node(1,nullptr);
 
 
