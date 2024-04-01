@@ -111,8 +111,6 @@ int main()
 {
 
      Node *head = new Node(1,nullptr);
-
-
     Node *second = new Node(2,head);
     Node *third = new Node(3,second);
     Node *fourth = new Node(4,third);
