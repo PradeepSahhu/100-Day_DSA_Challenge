@@ -46,45 +46,100 @@ void traversal(Node *head)
 Node *oddEvenList(Node *head)
 {
 
-    if(head==NULL || head->next==NULL || head->next->next==NULL){
+    if (head == NULL || head->next == NULL || head->next->next == NULL)
+    {
         return head;
     }
 
     Node *odd = head;
-    Node*even = odd->next;
-    Node*evenHead = even;
+    Node *even = odd->next;
+    Node *evenHead = even;
 
-    while (even != NULL && even->next!=NULL)
+    while (even != NULL && even->next != NULL)
     {
-      
+
         odd->next = even->next;
         odd = even->next;
         even->next = odd->next;
         even = odd->next;
     }
-    odd->next=evenHead;
+    odd->next = evenHead;
 
     return head;
 }
 
-//Now seggragate according to even/odd values.
+// Now seggragate according to even/odd values.
 
-Node*evenOddValues(Node*head){
-    
-    if(head==NULL){
+Node *evenOddValues(Node *head)
+{
+
+    if (head == NULL || head->next == NULL)
+    {
         return head;
     }
-    Node*odd = NULL;
-    Node*even=NULL;
 
-    if(head->data%2!=0){
+    Node *odd = NULL;
+    Node *even = NULL;
+    Node *oddHead = NULL;
+    Node *evenHead = NULL;
+
+    if (head->data % 2 != 0)
+    {
         odd = head;
-    }else{
+        oddHead = odd;
+    }
+    else
+    {
         even = head;
+        evenHead = even;
+    }
+    Node *temp = head->next;
+
+    while (temp != NULL)
+    {
+        if (temp->data % 2 != 0)
+        {
+            if (odd == NULL)
+            {
+                odd = temp;
+                oddHead = odd;
+            }
+            else
+            {
+                odd->next = temp;
+                odd = odd->next;
+            }
+        }
+        else
+        {
+            if (even == NULL)
+            {
+                even = temp;
+                evenHead = even;
+            }
+            else
+            {
+                even->next = temp;
+                even = even->next;
+            }
+        }
+        temp = temp->next;
+    }
+    if(even!=NULL){
+        even->next = NULL;
+    }
+    if(odd!=NULL){
+        odd->next = NULL;
+    }
+
+    if(evenHead!=NULL){
+        even->next = oddHead;
+         return evenHead;
+    }else{
+        return oddHead;
     }
 
    
-
 }
 
 int main()
@@ -108,7 +163,7 @@ int main()
     seventh->next = last;
     last->next = nullptr;
 
-    Node*newHead= oddEvenList(head);
+    Node *newHead = evenOddValues(head);
     traversal(newHead);
 
     //   Compilation Time code //
