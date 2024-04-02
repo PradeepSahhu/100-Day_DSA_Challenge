@@ -89,8 +89,6 @@ Node* mergeTwoSortedLinkedList(Node*head,Node* head2){
         }
         temp=temp->next;
     }
-    cout<<"calling from the middle"<<endl;
-    traversal(temp);
 
     while(first!=NULL){
         temp->next = first;
@@ -103,7 +101,7 @@ Node* mergeTwoSortedLinkedList(Node*head,Node* head2){
         second=second->next;
         
     }
-    return temp->next;
+    return tempNode->next;
 }
 
 int main()
