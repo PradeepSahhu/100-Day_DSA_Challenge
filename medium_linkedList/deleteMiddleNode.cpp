@@ -43,81 +43,32 @@ void traversal(Node *head)
     }
 }
 
-//! Not Working properly.
-bool isPalindrome(Node *head)
-{
-    // write your code here
-
-    Node *start = head;
-    map<int, int> mpp;
-
-    while (start != NULL)
-    {
-        
-        mpp[start->data]++;
-        start = start->next;
-    }
-
-    for (auto it : mpp)
-    {
-        if (it.second != 2)
-        {
-            return false;
+Node* deleteMiddle(Node* head) {
+        if(head==NULL || head->next==NULL){
+            return NULL;
         }
-    }
-    return true;
-}
-
-bool isPalindromes(Node* head){
-
-    //! first find the middle element.
-
-    Node* slow = head;
-    Node* fast = head;
-    while(fast->next!=nullptr && fast->next->next!=nullptr){
-        slow=slow->next;
-        fast=fast->next->next;
-    }
-
-    //!reversing the linked list.
-
-    Node* prev = nullptr;
-    Node*curr = slow->next;
-
-
-    while(curr!=nullptr){
-       Node* upcome = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = upcome;
-
-    }
-    //! prev will be at the start of reverse linkedlist.
-    slow->next=nullptr;
-    Node*start = head;
-    Node*end = prev;
-    while(end!=nullptr && start!=nullptr){
-        if(start->data!=end->data){
-            return false;
+        Node* slow = head;
+        Node*extra = NULL;
+        Node*fast = head;
+        while(fast!=NULL && fast->next!=NULL){
+            extra = slow;
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        start=start->next;
-        end = end->next;
-    }
-    return true;
+        extra->next = slow->next;
+        return head;
 }
-
 
 int main()
 {
-
     Node *head = new Node(1,nullptr);
     Node *second = new Node(2,head);
     Node *third = new Node(3,second);
     Node *fourth = new Node(4,third);
-    Node *fifth = new Node(4,fourth);
-    Node *sixth = new Node(3,fifth);
-    Node *seventh = new Node(2,sixth);
-    Node*last = new Node(1,seventh);
+    Node *fifth = new Node(5,fourth);
+    Node *sixth = new Node(6,fifth);
+    Node *seventh = new Node(7,sixth);
+    Node*last = new Node(8,seventh);
 
 
     head->next = second;
@@ -129,7 +80,9 @@ int main()
     seventh->next = last;
     last->next = nullptr;
 
-    cout<<isPalindrome(head);
+    head = deleteMiddle(head);
+    traversal(head);
+    
 
     //   Compilation Time code //
     cout << endl;
