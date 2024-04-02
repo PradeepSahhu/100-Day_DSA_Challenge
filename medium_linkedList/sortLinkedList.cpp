@@ -62,6 +62,7 @@ void SortLinkedList(Node*&head){
             createLinkList(newNode,curr->data);
             curr = curr->next;
         }else{
+            
 
         }
     }
