@@ -73,29 +73,63 @@ void SortLinkedList(Node*&head){
 
 }
 
+Node* mergeTwoSortedLinkedList(Node*head,Node* head2){
+    Node*first = head;
+    Node*second=head2;
+    Node*tempNode = new Node(-1);
+    Node*temp=tempNode;
+
+    while(first!=NULL && second!=NULL){
+        if(first->data<second->data){
+            temp->next = first;
+            first=first->next;
+        }else{
+            temp->next=second;
+            second=second->next;
+        }
+        temp=temp->next;
+    }
+    cout<<"calling from the middle"<<endl;
+    traversal(temp);
+
+    while(first!=NULL){
+        temp->next = first;
+        temp=temp->next;
+        first=first->next;
+    }
+    while(second!=NULL){
+         temp->next = second;
+        temp=temp->next;
+        second=second->next;
+        
+    }
+    return temp->next;
+}
+
 int main()
 {
     Node *head = new Node(1,nullptr);
-    Node *second = new Node(2,head);
-    Node *third = new Node(1,second);
-    Node *fourth = new Node(2,third);
-    Node *fifth = new Node(11,fourth);
-    Node *sixth = new Node(9,fifth);
-    Node *seventh = new Node(10,sixth);
-    Node*last = new Node(56,seventh);
+    Node *second = new Node(3,head);
+    Node *third = new Node(5,second);
+    Node *fourth = new Node(7,third);
+
+    Node*head2 = new Node(2);
+    Node*second2 = new Node(4);
+    Node*third2 = new Node(6);
+
+    head2->next = second2;
+    second2->next = third2;
+    third2->next = nullptr;
+   
 
 
     head->next = second;
     second->next = third;
     third->next = fourth;
-    fourth->next = fifth;
-    fifth->next = sixth;
-    sixth->next = seventh;
-    seventh->next = last;
-    last->next = nullptr;
+    fourth->next = nullptr;
 
-    SortLinkedList(head);
-    traversal(head);
+    Node* newNode = mergeTwoSortedLinkedList(head,head2);
+    traversal(newNode);
     
 
     //   Compilation Time code //
