@@ -90,17 +90,19 @@ Node* mergeTwoSortedLinkedList(Node*head,Node* head2){
         temp=temp->next;
     }
 
-    while(first!=NULL){
-        temp->next = first;
-        temp=temp->next;
-        first=first->next;
-    }
-    while(second!=NULL){
-         temp->next = second;
-        temp=temp->next;
-        second=second->next;
+    // while(first!=NULL){
+    //     temp->next = first;
+    //     temp=temp->next;
+    //     first=first->next;
+    // }
+    // while(second!=NULL){
+    //      temp->next = second;
+    //     temp=temp->next;
+    //     second=second->next;
         
-    }
+    // }
+    if(first) temp->next = first;
+    else temp->next = second;
     return tempNode->next;
 }
 

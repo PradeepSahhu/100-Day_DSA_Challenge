@@ -43,47 +43,114 @@ void traversal(Node *head)
     }
 }
 
-void createLinkList(Node*&head,int data){
-    if(head==NULL){
+void createLinkList(Node *&head, int data)
+{
+    if (head == NULL)
+    {
         head->data = data;
     }
-    Node*temp= head;
-    while(temp->next!=NULL){
+    Node *temp = head;
+    while (temp->next != NULL)
+    {
         temp = temp->next;
     }
     temp->data = data;
 }
 
-void SortLinkedList(Node*&head){
-    Node*curr = head;
-   vector<int> v;
-    while(curr!=NULL){
-       v.push_back(curr->data);
-       curr = curr->next;
-    }
-    sort(v.begin(),v.end());
-    Node*temp = head;
-    int s = v.size();
-    int i = 0;
-    while(i<s){
-        temp->data = v[i];
-        i++;
+// void SortLinkedList(Node*&head){
+//     Node*curr = head;
+//    vector<int> v;
+//     while(curr!=NULL){
+//        v.push_back(curr->data);
+//        curr = curr->next;
+//     }
+//     sort(v.begin(),v.end());
+//     Node*temp = head;
+//     int s = v.size();
+//     int i = 0;
+//     while(i<s){
+//         temp->data = v[i];
+//         i++;
+//         temp = temp->next;
+//     }
+
+// }
+
+//! Applying merge sort.
+
+Node *merge(Node *head, Node *head2)
+{
+    Node *first = head;
+    Node *second = head2;
+    Node *tempNode = new Node(-1);
+    Node *temp = tempNode;
+
+    while (first != NULL && second != NULL)
+    {
+        if (first->data < second->data)
+        {
+            temp->next = first;
+            first = first->next;
+        }
+        else
+        {
+            temp->next = second;
+            second = second->next;
+        }
         temp = temp->next;
     }
+
+    if (first)
+        temp->next = first;
+    else
+        temp->next = second;
+    return tempNode->next;
+}
+
+Node *findMiddle(Node *head)
+{
+
+    Node *slow = head;
+    Node *fast = head->next;
+    //! returns the first middle not the second middle.
+    while (fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+
+Node *SortLinkedList(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *middle = findMiddle(head);
+    Node*lefthead = head;
+    Node*righthead = middle->next;
+    middle->next = NULL;
+
+    lefthead = SortLinkedList(lefthead);
+    righthead = SortLinkedList(righthead);
+    return merge(lefthead,righthead);
+
+
 
 }
 
 int main()
 {
-    Node *head = new Node(1,nullptr);
-    Node *second = new Node(2,head);
-    Node *third = new Node(1,second);
-    Node *fourth = new Node(2,third);
-    Node *fifth = new Node(11,fourth);
-    Node *sixth = new Node(9,fifth);
-    Node *seventh = new Node(10,sixth);
-    Node*last = new Node(56,seventh);
-
+    Node *head = new Node(1, nullptr);
+    Node *second = new Node(2, head);
+    Node *third = new Node(1, second);
+    Node *fourth = new Node(2, third);
+    Node *fifth = new Node(11, fourth);
+    Node *sixth = new Node(9, fifth);
+    Node *seventh = new Node(10, sixth);
+    Node *last = new Node(56, seventh);
 
     head->next = second;
     second->next = third;
@@ -96,7 +163,6 @@ int main()
 
     SortLinkedList(head);
     traversal(head);
-    
 
     //   Compilation Time code //
     cout << endl;
