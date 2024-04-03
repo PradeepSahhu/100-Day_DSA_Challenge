@@ -100,6 +100,8 @@ Node *merge(Node *head, Node *head2)
         temp = temp->next;
     }
 
+    
+
     if (first)
         temp->next = first;
     else
