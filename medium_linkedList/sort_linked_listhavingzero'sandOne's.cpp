@@ -69,14 +69,9 @@ Node *sortList(Node *head)
         }
         temp = temp->next;
     }
-    if(zeroTemp){
-        zeroTemp->next = oneHead->next;
-    }
-    if(oneTemp){
-        oneTemp->next = twoHead->next;
-    }
+    zeroTemp->next = (oneHead->next)?oneHead->next:twoHead->next;
+    oneTemp->next = twoHead->next;
     twoTemp->next = nullptr;
-
     return zeroHead->next;
     
 }
