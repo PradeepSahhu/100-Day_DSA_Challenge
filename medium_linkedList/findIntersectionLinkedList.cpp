@@ -86,6 +86,7 @@ Node* firstIntersectionNode(Node*headA,Node*headB){
 //! Better Approach by using the length of both the linked list.
 
 int lengthOfLinkedList(Node* head){
+
     int length =0;
     Node*temp = head;
     while(temp!=NULL){
@@ -97,7 +98,43 @@ int lengthOfLinkedList(Node* head){
 }
 
 Node* findIntersection(Node* heada, Node* headb){
-    
+
+    if (heada == NULL || headb == NULL) {
+        return NULL;
+    }
+    Node*tempa = heada;
+    Node*tempb = headb;
+
+    int lengtha = lengthOfLinkedList(heada);
+    int lengthb = lengthOfLinkedList(headb);
+
+    if(lengthb>lengtha){
+        int result = lengthb-lengtha;
+
+        while(result!=0){
+            tempb= tempb->next;
+            result--;
+        }
+    }else{
+
+        int result = lengtha-lengthb;
+
+        while(result!=0){
+            tempa= tempa->next;
+            result--;
+        }
+
+    }
+    while(tempa!=NULL && tempb!=NULL){
+        if(tempa==tempb){
+            return tempa;
+        }
+        tempa=tempa->next;
+        tempb = tempb->next;
+    }
+    return NULL;
+
+
 }
 
 
