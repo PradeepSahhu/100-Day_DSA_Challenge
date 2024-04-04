@@ -50,7 +50,6 @@ Node *getIntersectionNode(Node *headA, Node *headB) {
 
     Node* tempa = headA;
     Node* tempb = headB;
-
     while (tempa != tempb) {
         tempa = (tempa == NULL) ? headB : tempa->next;
         tempb = (tempb == NULL) ? headA : tempb->next;
@@ -59,6 +58,47 @@ Node *getIntersectionNode(Node *headA, Node *headB) {
     return tempa; 
 }
 
+//! Brute force Approach.
+
+Node* firstIntersectionNode(Node*headA,Node*headB){
+    if (headA == NULL || headB == NULL) {
+        return NULL;
+    }
+
+    Node* tempa = headA;
+    Node* tempb = headB;
+   set<Node*> st;
+   while(tempa!=NULL){
+    st.insert(tempa);
+    tempa= tempa->next;
+   }
+
+   while(tempb!=NULL){
+    if(st.find(tempb)!=st.end()){
+        return tempb;
+    }
+    tempb = tempb->next;
+   }
+
+    return NULL; 
+}
+
+//! Better Approach by using the length of both the linked list.
+
+int lengthOfLinkedList(Node* head){
+    int length =0;
+    Node*temp = head;
+    while(temp!=NULL){
+        length++;
+        temp = temp->next;
+    }
+
+    return length;
+}
+
+Node* findIntersection(Node* heada, Node* headb){
+    
+}
 
 
 int main()
@@ -82,6 +122,8 @@ int main()
     second->next = third;
     third->next = fourth;
     fourth->next = nullptr;
+
+   
 
     
     
