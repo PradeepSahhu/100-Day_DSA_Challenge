@@ -155,12 +155,10 @@ int main()
     // cout<<detectALoop(head);
 
     // cout<<hashTableApproach(head)->data;
-    cout<<StartingAndEndingPoint(head)->data;
+    cout<<StartingAndEndingPoint(head)->data<<endl;
 
 
-                 //   Compilation Time code //
-                 cout
-                 << endl;
+    //   Compilation Time code //
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
