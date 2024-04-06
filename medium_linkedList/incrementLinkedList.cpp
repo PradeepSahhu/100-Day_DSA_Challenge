@@ -43,32 +43,33 @@ void traversal(Node *head)
     }
 }
 
-Node* reverse(Node* head){
-    Node*prev = NULL;
-    Node*curr = head;
-    while(curr!=NULL){
-        Node*upcome = curr->next;
-        curr->next=prev;
+Node *reverse(Node *head)
+{
+    Node *prev = NULL;
+    Node *curr = head;
+    while (curr != NULL)
+    {
+        Node *upcome = curr->next;
+        curr->next = prev;
         prev = curr;
-        curr=upcome;
+        curr = upcome;
     }
     return prev;
 }
 
-//!Not working.
+//! Not working.
 // Node *addOne(Node *head)
 // {
 //     int number = 0;
 
 //      Node*temp = head;
 
-
 //     while(temp!=NULL){
 //         number = number*10+temp->data;
 //         temp=temp->next;
 //     }
 //     number++;
-    
+
 //     Node *newNode = new Node(-1);
 //     Node*newHead = newNode;
 
@@ -78,7 +79,7 @@ Node* reverse(Node* head){
 //         newNode->next = temp;
 //         newNode = newNode->next;
 //         number = number/10;
-    
+
 //     }
 //     Node*prev = NULL;
 //     Node*curr = newHead->next;
@@ -92,99 +93,105 @@ Node* reverse(Node* head){
 
 // }
 
-
 Node *addOne(Node *head)
 {
     head = reverse(head);
 
-    Node*temp = head;
+    Node *temp = head;
     // traversal(head);
     int carry = 1;
 
-    while(temp!=NULL){
+    while (temp != NULL)
+    {
         temp->data = temp->data + carry;
 
-        if(temp->data < 10){
+        if (temp->data < 10)
+        {
             carry = 0;
             break;
-        }else{
+        }
+        else
+        {
             carry = 1;
             temp->data = 0;
         }
         temp = temp->next;
     }
-    if(carry == 1){
-        Node* newNode = new Node(1);
+    if (carry == 1)
+    {
+        Node *newNode = new Node(1);
         head = reverse(head);
         newNode->next = head;
         return newNode;
-
     }
     head = reverse(head);
     return head;
 }
 
-
-Node* addOnes(Node*head){
+Node *addOnes(Node *head)
+{
     int carry = 1;
 
     head = reverse(head);
 
-    Node*temp = head;
-    while(temp!=NULL){
-        temp->data = temp->data+carry;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        temp->data = temp->data + carry;
 
-        if(temp->data<10){
+        if (temp->data < 10)
+        {
             head = reverse(head);
             break;
-        }else{
+        }
+        else
+        {
             temp->data = 0;
             carry = 1;
         }
         temp = temp->next;
     }
 
-    if(carry == 1){
+    if (carry == 1)
+    {
         Node *newHead = new Node(1);
         newHead->next = head;
         return newHead;
     }
     return head;
-
 }
 
-int addOneRec(Node*head){
+int addOneRec(Node *head)
+{
 
-    if(head==NULL){
+    if (head == NULL)
+    {
         return 1;
     }
     int carry = addOneRec(head->next);
 
-    head->data = head->data+carry;
-    if(head->data<10){
-        carry = 0;
-    
-    }else{
-        head->data = 0;
-        carry = 1;
+    head->data = head->data + carry;
+    if (head->data < 10)
+    {
+        return 0;
     }
-    return carry;
+    head->data = 0;
+    return 1;
 }
 
+Node *addOneRecursion(Node *head)
+{
 
-Node* addOneRecursion(Node*head){
-
-    Node*temp = head;
+    Node *temp = head;
     int carry = addOneRec(temp);
-    if(carry == 1){
-        Node*newHead = new Node(1);
+    if (carry == 1)
+    {
+        Node *newHead = new Node(1);
         newHead->next = head;
         return newHead;
-        
     }
     return head;
 }
-
 
 int main()
 {
@@ -199,7 +206,7 @@ int main()
     third->next = fourth;
     fourth->next = nullptr;
 
-    Node*ans = addOneRecursion(head);
+    Node *ans = addOneRecursion(head);
     traversal(ans);
 
     //   Compilation Time code //
