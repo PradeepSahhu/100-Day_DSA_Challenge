@@ -192,6 +192,46 @@ Node *addOneRecursion(Node *head)
     }
     return head;
 }
+//!Alternative Solution(without reversal or recursion)
+
+Node* alternativeSolution(Node* head){
+    Node*temp = head;
+    Node*nonNineNode = NULL;
+
+    while(temp->next!=NULL){
+        if(temp->data!=9){
+            nonNineNode = temp;
+        }
+        temp = temp->next;
+    }
+
+    if(temp->data!=9){
+        temp->data = temp->data+1;
+        return head;
+    }else{
+
+        if(nonNineNode!=NULL){
+            nonNineNode->data = nonNineNode->data+1;
+            nonNineNode=nonNineNode->next;
+            Node*temp = nonNineNode;
+            while(temp!=NULL){
+                temp->data = 0;
+                temp= temp->next;
+            }
+            return head;
+
+        }else{
+            Node* newHead = new Node(1);
+            newHead->next = head;
+            Node*temp = head;
+            while(temp!=NULL){
+                temp->data = 0;
+                temp=temp->next;
+            }
+            return newHead;
+        }
+    }
+}
 
 int main()
 {
