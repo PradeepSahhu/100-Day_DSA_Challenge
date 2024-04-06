@@ -125,6 +125,35 @@ Node *addOne(Node *head)
 }
 
 
+Node* addOnes(Node*head){
+    int carry = 1;
+
+    head = reverse(head);
+
+    Node*temp = head;
+    while(temp!=NULL){
+        temp->data = temp->data+carry;
+
+        if(temp->data<10){
+            head = reverse(head);
+            break;
+        }else{
+            temp->data = 0;
+            carry = 1;
+        }
+        temp = temp->next;
+    }
+
+    if(carry == 1){
+        Node *newHead = new Node(1);
+        newHead->next = head;
+        return newHead;
+    }
+    return head;
+
+}
+
+
 int main()
 {
 
