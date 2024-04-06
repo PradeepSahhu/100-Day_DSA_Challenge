@@ -153,9 +153,36 @@ Node* addOnes(Node*head){
 
 }
 
+int addOneRec(Node*head){
+
+    if(head==NULL){
+        return 1;
+    }
+    int carry = addOneRec(head->next);
+
+    head->data = head->data+carry;
+    if(head->data<10){
+        carry = 0;
+    
+    }else{
+        head->data = 0;
+        carry = 1;
+    }
+    return carry;
+}
+
 
 Node* addOneRecursion(Node*head){
 
+    Node*temp = head;
+    int carry = addOneRec(temp);
+    if(carry == 1){
+        Node*newHead = new Node(1);
+        newHead->next = head;
+        return newHead;
+        
+    }
+    return head;
 }
 
 
@@ -172,7 +199,7 @@ int main()
     third->next = fourth;
     fourth->next = nullptr;
 
-    Node*ans = addOne(head);
+    Node*ans = addOneRecursion(head);
     traversal(ans);
 
     //   Compilation Time code //
