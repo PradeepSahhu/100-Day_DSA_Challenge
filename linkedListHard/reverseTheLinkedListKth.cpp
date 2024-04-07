@@ -103,6 +103,35 @@ Node* kReverse(Node* head, int k) {
 
 }
 
+Node* reverseKthNode(Node* head,int k){
+    Node*temp = head;
+
+    Node*prevNode = NULL;
+    
+    while(temp!=NULL){
+
+        Node* kthNode = findkthNode(temp,k);
+        if(kthNode==NULL){
+            if(prevNode) prevNode->next = temp;
+            break;
+        }
+
+        Node*nextNode = kthNode->next;
+        kthNode->next = NULL;
+        reverse(temp);
+
+        if(temp==head){
+            head = kthNode;
+        }else{
+            prevNode->next = kthNode;
+        }
+        prevNode = temp;
+        temp = nextNode;
+
+    }
+    return head;
+}
+
 int main()
 {
 
