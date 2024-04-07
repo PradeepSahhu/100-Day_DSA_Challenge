@@ -43,6 +43,66 @@ void traversal(Node *head)
     }
 }
 
+Node* reverse(Node* head){
+    Node* prev = nullptr;
+    Node* curr = head;
+    while(curr!=NULL){
+        Node*upcome=curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = upcome;
+    }
+    return prev;
+}
+
+Node* findkthNode(Node* head, int k){
+
+    int cnt = 1;
+    Node* temp = head;
+    while(temp!=NULL){
+        if(cnt==k){
+            return temp;
+
+        }
+        temp = temp->next;
+        cnt++;
+    }   
+    return NULL;
+
+}
+
+Node* kReverse(Node* head, int k) {
+    
+    Node* temp = head;
+    Node*prevNode = NULL;
+
+    while(temp!=NULL){
+        Node* kthNode = findkthNode(temp,k);
+
+        if(kthNode==NULL){
+            if(prevNode)
+                  prevNode->next = temp;
+            break;
+        }
+        Node* nextNode = kthNode->next;
+        kthNode->next = NULL;
+        reverse(temp);
+
+        if(temp==head){
+            head = kthNode;
+        }else{
+            prevNode->next = kthNode;
+            
+        }
+        prevNode = temp;
+        temp = nextNode;
+
+    }
+
+    return head;
+
+}
+
 int main()
 {
 
