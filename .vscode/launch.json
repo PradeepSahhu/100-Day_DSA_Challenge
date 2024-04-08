@@ -16,3 +16,22 @@
     ],
     "version": "2.0.0"
 }
+
+// {
+//     "configurations": [
+//         {
+//             "name": "Execute Script",
+//             "type": "cppdbg",
+//             "request": "launch",
+//             "program": "${fileDirname}/ex.sh", // Path to your script file
+//             "args": [], // You can provide arguments to your script here if needed
+//             "stopAtEntry": false,
+//             "cwd": "${fileDirname}",
+//             "environment": ["${fileBasenameNoExtension}"],
+//             "externalConsole": false,
+//             "MIMode": "lldb",
+//             // You can remove the preLaunchTask since you're not building a C/C++ program anymore
+//         }
+//     ],
+//     "version": "2.0.0"
+// }

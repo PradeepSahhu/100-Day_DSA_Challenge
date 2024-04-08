@@ -1,3 +1,20 @@
+// {
+//     "tasks":[
+//     {
+//         "type":"cppbuild",
+//         "label":"C/C++: clang++ build active file",
+//         "commands":"/usr/bin/clang++",
+//         "args":[
+//             "-std=c++17 ",
+//             "-stdlib=libc++"
+//         ]
+//     }
+// ],
+// "files.associations": {
+//     "iostream": "cpp"
+// }
+// }
+
 {
     "tasks":[
     {
@@ -5,9 +22,12 @@
         "label":"C/C++: clang++ build active file",
         "commands":"/usr/bin/clang++",
         "args":[
-            "-std=c++17 ",
+            "-std=c++11",
             "-stdlib=libc++"
         ]
     }
-]
+],
+"files.associations": {
+    "iostream": "cpp"
+}
 }
