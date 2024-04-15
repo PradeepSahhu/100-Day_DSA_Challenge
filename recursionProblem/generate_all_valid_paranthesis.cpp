@@ -38,8 +38,6 @@ vector<string> generateParenthesis(int n){
     int closeN=0;
 
     res(n,openN,closeN,temp,str);
-
-
     return temp;
 
 }
