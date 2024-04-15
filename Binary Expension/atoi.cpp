@@ -33,7 +33,7 @@ int myAtoi(string s) {
 int myAtoi(string s) {
 
     int length = s.size();
-    int num = 0;
+    double num = 0;
 
     int i = 0;
 
@@ -56,7 +56,10 @@ int myAtoi(string s) {
 
     num = (negative? -1*num : num);
 
- return num;
+    if(num >= INT_MAX) num = INT_MAX;
+    if(num<-INT_MIN) num = INT_MIN;
+
+ return int(num);
 
 
 }
