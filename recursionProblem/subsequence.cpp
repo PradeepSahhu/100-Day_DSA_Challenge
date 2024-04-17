@@ -38,6 +38,50 @@ auto start = chrono::steady_clock::now();
 //     return ans;
 // }
 
+
+void subsequence(int index,vector<vector<int>>& ans,vector<int> output,vector<int> &a,long long k , long long sum){
+
+    if(sum == k){
+        ans.push_back(output);
+    }
+
+    if(sum>k){
+        while(sum>k && !output.empty()){
+            sum-=output[0];
+            output.erase(output.begin());
+        }
+
+        if(sum==k){
+            ans.push_back(output);
+        }
+    }
+
+    if(index = a.size()){
+        return;
+    }
+
+    output.push_back(a[index]);
+    sum+=a[index];
+
+    subsequence(index+1,ans,output,a,k,sum);
+
+
+
+
+}
+
+
+
+vector< vector<int> > subsequence(vector<int> a, long long k){
+
+    vector<vector<int >> ans;
+
+    vector<int> output;
+
+    subsequence(0,ans,output,a,k,0);
+    return ans;
+}
+
 int main()
 {
 
