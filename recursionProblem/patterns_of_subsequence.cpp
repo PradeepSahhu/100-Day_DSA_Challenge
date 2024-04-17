@@ -68,29 +68,23 @@ bool printSing(int ind, vector<int> ds, int s, int sum, vector<int> arr, int n)
 
 //! no of subsequences
 
-int printNumber(int ind, vector<int> ds, int s, int sum, vector<int> arr, int n)
+int printNumber(int ind, int s, int sum, vector<int> arr, int n)
 {
     if (ind == n)
     {
         //condition satisfied
         if (s == sum)
         {
-            for (auto it : ds)
+
             return 1;
         }
         else return 0;
     }
 
-    ds.push_back(arr[ind]);
     s += arr[ind];
-
-    int l = printNumber(ind + 1, ds, s, sum, arr, n);
-
+    int l = printNumber(ind + 1, s, sum, arr, n);
     s -= arr[ind];
-    ds.pop_back();
-
-    int r = printNumber(ind + 1, ds, s, sum, arr, n);
-
+    int r = printNumber(ind + 1, s, sum, arr, n);
     return l+r;
 }
 
@@ -103,9 +97,7 @@ int main()
     int n = 3;
     int sum = 2;
 
-    vector<int> ds;
-
-    cout<<printNumber(0, ds, 0, sum, nums, n);
+    cout<<printNumber(0, 0, sum, nums, n);
 
     //   Compilation Time code //
     cout << endl;
