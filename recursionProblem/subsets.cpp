@@ -51,17 +51,21 @@ vector<vector<int>> subset(vector<int> &nums)
     for (int num = 0; num <= x; num++)
     {
         vector<int> temp;
-        int substr = 0;
+        // int substr;
 
         for (int i = 0; i <= n - 1; i++)
         {
 
             if (num & (1 << i))
             {
-                substr+=nums[i];
+                temp.push_back(nums[i]);
+                // substr = nums[i];
+              
             }
+             
         }
-        temp.push_back(substr);
+        // temp.push_back(substr);
+       
         vec.push_back(temp);
     }
 
