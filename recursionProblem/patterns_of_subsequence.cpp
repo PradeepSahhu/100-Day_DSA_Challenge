@@ -39,6 +39,7 @@ void printS(int ind, vector<int> ds, int s, int sum, vector<int> arr, int n)
 
 bool printSing(int ind, vector<int> ds, int s, int sum, vector<int> arr, int n)
 {
+    if(s> sum) return false;
     if (ind == n)
     {
         //condition satisfied
