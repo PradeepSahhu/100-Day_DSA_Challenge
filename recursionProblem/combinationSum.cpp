@@ -12,21 +12,28 @@ void recursionSolution(vector<vector<int>> &ans,vector<int> &ds,int index, int t
     if(index==combination.size()){
         if(target==0){
             ans.push_back(ds);
+            return;
+        }else{
+            return;
         }
     }
 
 
     // pick condition 
 
-    if(target-combination[index]>0){
+    
+
+    // if(target-combination[index]>0){
+    if(combination[index]<=target){
         ds.push_back(combination[index]);
         recursionSolution(ans,ds,index,target-combination[index],combination);
+         ds.pop_back();
     }
 
 
     // non pick condition.
 
-    ds.pop_back();
+   
     recursionSolution(ans,ds,index+1,target,combination);
 
 
