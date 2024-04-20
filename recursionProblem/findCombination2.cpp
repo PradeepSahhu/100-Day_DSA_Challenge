@@ -25,7 +25,32 @@ void recursionSolution(vector<vector<int>> &ans,vector<int> &ds,int index, int t
     }
 
 
+}
 
+
+
+
+
+
+void recursionCombination(vector<vector<int>> &ans,vector<int> &ds,vector<int> combinations,int index,int target){
+
+
+  if(target==0){
+    ans.push_back(ds);
+    return;
+  }
+
+
+  for(int i = index;i<combinations.size();i++){
+
+    if(i>index && combinations[i]==combinations[i-1]) continue;
+    if(combinations[i]>target) break;
+
+    ds.push_back(combinations[i]);
+    recursionCombination(ans,ds,combinations,i+1,target-combinations[i]);
+
+    ds.pop_back();
+  }
 
 
 }
