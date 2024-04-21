@@ -48,6 +48,7 @@ void recursionPicking(int index,int sum, vector<int> num,vector<int> &ds){
     }
 
     //picking.
+    
 
     sum+=num[index];
     recursionPicking(index+1,sum,num,ds);
